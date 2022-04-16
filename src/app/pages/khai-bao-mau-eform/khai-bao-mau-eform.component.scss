@@ -1,0 +1,45 @@
+.circle-div {
+    background-color: #314963;
+    height: 40px;
+    width: 40px;
+    border-radius: 100%;
+    position: fixed;
+    bottom: 21px;
+    right: 5px;
+}
+
+.dx-field-label {
+    font-family: 'Raleway'; 
+    font-size: large;
+}
+
+.dx-field-value {
+    font-family: 'Raleway'; 
+    font-size: large;
+}
+
+.dx-fieldset-header {
+    font-family: 'Raleway'; 
+    font-size: large;
+    font-weight: 700;
+}
+
+.float-div-bottom {
+    background-color: #314963;
+    height: 40px;
+    width: 100%;
+    border-radius: 2%;
+    position: fixed;
+    bottom: 1px;
+    right: 1px;
+}
+
+.float-div-top {
+    background-color: #314963;
+    height: 40px;
+    width: 100%;
+    border-radius: 2%;
+    position: fixed;
+    top: 1px;
+    right: 1px;
+}

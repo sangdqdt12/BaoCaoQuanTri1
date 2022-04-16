@@ -1,0 +1,34 @@
+ <div class="ExBoder">
+<dx-html-editor
+    [height]="height"
+    [(valueType)]="editorValueType"
+    [(value)]="valueContent">
+    <dxo-toolbar>
+            <dxi-item name="undo"></dxi-item>
+            <dxi-item name="redo"></dxi-item>
+            <dxi-item name="separator"></dxi-item>
+
+            <dxi-item name="bold"></dxi-item>
+            <dxi-item name="italic"></dxi-item>
+            <dxi-item name="strike"></dxi-item>
+            <dxi-item name="underline"></dxi-item>
+            <dxi-item name="separator"></dxi-item>
+            <dxi-item name="alignLeft"></dxi-item>
+            <dxi-item name="alignCenter"></dxi-item>
+            <dxi-item name="alignRight"></dxi-item>
+            <dxi-item name="alignJustify"></dxi-item>
+            <dxi-item name="separator"></dxi-item>
+            <dxi-item name="color"></dxi-item>
+            <dxi-item name="background"></dxi-item>
+    </dxo-toolbar>
+</dx-html-editor>
+
+
+
+<div style="position: relative;left: 200px;">
+    <dx-button class="button-info" text="Save" (onClick)="Save()">
+    </dx-button>
+</div>
+
+
+</div>

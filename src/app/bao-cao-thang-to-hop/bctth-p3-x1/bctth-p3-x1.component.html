@@ -1,0 +1,22 @@
+<div class="ExBoder">
+    <dx-box direction="col" width="100%" [height]="height">
+       
+            <dxi-item class="rect demo-light" [ratio]="1">
+                <h6>TỔNG DOANH SỐ</h6>
+            </dxi-item>
+        
+            <dxi-item class="rect demo-light" [ratio]="1">
+                <h6>{{dataSource.xe_ban_03| number}}</h6>
+            </dxi-item>
+       
+            <dxi-item class="rect demo-light" [ratio]="1">
+                <p>So KH: {{dataSource.ktkh_03| number}}</p>
+            </dxi-item>
+       
+            <dxi-item class="rect demo-light" [ratio]="1">
+                <p>So CK: {{dataSource.so_ck_03| number}}</p>
+            </dxi-item>
+       
+    </dx-box>
+
+</div>

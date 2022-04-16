@@ -1,0 +1,283 @@
+<dx-popup maxWidth="600" [showTitle]="false" title="Filter" [dragEnabled]="false" [closeOnOutsideClick]="false"
+    [(visible)]="popupVisible">
+
+
+    
+
+
+    
+
+    <div class="dx-fieldset">
+
+        <div class="dx-field">
+            <div class="dx-field-label">Từ ngày</div>
+            <div class="dx-field-value">
+                <dx-date-box [(value)]="tuNgayVal" type="date">
+                </dx-date-box>
+            </div>
+        </div>
+
+        <div class="dx-field">
+            <div class="dx-field-label">Khối</div>
+            <div class="dx-field-value">
+                <dx-select-box [dataSource]="khois" displayExpr="ten_nh" valueExpr="ma_nh" [(value)]="khoiVal">
+                </dx-select-box>
+            </div>
+        </div>
+    
+        <div class="dx-field">
+            <div class="dx-field-label">Đơn vị</div>
+            <div class="dx-field-value">
+                <dx-select-box [dataSource]="donViCoSos" displayExpr="Ten_dvcs" valueExpr="Ma_dvcs" [(value)]="donVi">
+                </dx-select-box>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div style="position: absolute;right: 50px;bottom: 10px; ">
+        <dx-button class="button-info" with="200" text="   Ok  " (onClick)="search()">
+        </dx-button>
+    </div>
+
+    <div style="position: absolute;right: 150px;bottom: 10px;  ">
+        <dx-button class="button-info" text="Cancel" (onClick)="close()">
+        </dx-button>
+    </div>
+</dx-popup>
+
+
+
+
+
+<div class="w3-row">
+    <div class="w3-col l2 m12 s12">
+        <app-bctdv-p1-x1 [height]="chartHeith" [dataSource]="Data1x"></app-bctdv-p1-x1>
+    </div>
+    <div class="w3-col l7 m12 s12">
+        <app-bctdv-p1-x2 [dataSource]="Data1" [height]="chartHeith" [width]="chartWith"></app-bctdv-p1-x2>
+    </div>
+    <div class="w3-col l3 m12 s12">
+        <app-giai-trinh #child1 [ngay] = "tuNgayVal" [height] = "comHeith" [bieuDo] = "01" ></app-giai-trinh>
+    </div>
+</div>
+
+
+<div class="w3-row">
+    <div class="w3-col l2 m12 s12">
+        <app-bctdv-p2-x1 [height]="chartHeith" [dataSource]="Data2x"></app-bctdv-p2-x1>
+    </div>
+    <div class="w3-col l7 m12 s12">
+        <app-bctdv-p2-x2 [dataSource]="Data2" [height]="chartHeith" [width]="chartWith"></app-bctdv-p2-x2>
+    </div>
+    <div class="w3-col l3 m12 s12">
+        <app-giai-trinh #child2 [ngay] = "tuNgayVal"  [height] = "comHeith" [bieuDo] = "02"></app-giai-trinh>
+
+    </div>
+</div>
+
+<div class="w3-row">
+    <div class="w3-col l2 m12 s12">
+        <app-bctdv-p3-x1 [height]="chartHeith" [dataSource]="Data3x"></app-bctdv-p3-x1>
+    </div>
+    <div class="w3-col l7 m12 s12">
+        <app-bctdv-p3-x2 [dataSource]="Data3" [height]="chartHeith" [width]="chartWith"></app-bctdv-p3-x2>
+    </div>
+    <div class="w3-col l3 m12 s12">
+        <app-giai-trinh #child3 [ngay] = "tuNgayVal"  [height] = "comHeith" [bieuDo] = "03"></app-giai-trinh>
+    </div>
+</div>
+
+<div class="w3-row">
+    <div class="w3-col l2 m12 s12">
+        <app-bctdv-p4-x1 [height]="chartHeith" [dataSource]="Data4x"></app-bctdv-p4-x1>
+    </div>
+    <div class="w3-col l7 m12 s12">
+        <app-bctdv-p4-x2 [dataSource]="Data4" [height]="chartHeith" [width]="chartWith"></app-bctdv-p4-x2>
+    </div>
+    <div class="w3-col l3 m12 s12">
+        <app-giai-trinh #child4 [ngay] = "tuNgayVal"  [height] = "comHeith" [bieuDo] = "04"></app-giai-trinh>
+    </div>
+</div>
+<div class="w3-row">
+    <div class="w3-col l2 m12 s12">
+        <app-bctdv-p5-x1 [height]="chartHeith" [dataSource]="Data5x"></app-bctdv-p5-x1>
+    </div>
+    <div class="w3-col l7 m12 s12">
+        <app-bctdv-p5-x2 [dataSource]="Data5" [height]="chartHeith" [width]="chartWith"></app-bctdv-p5-x2>
+    </div>
+    <div class="w3-col l3 m12 s12">
+        <app-giai-trinh #child5 [ngay] = "tuNgayVal"  [height] = "comHeith" [bieuDo] = "05"></app-giai-trinh>
+    </div>
+</div>
+<div class="w3-row">
+    <div class="w3-col l2 m12 s12">
+        <app-bctdv-p6-x1 [height]="chartHeith" [dataSource]="Data6x"></app-bctdv-p6-x1>
+    </div>
+    <div class="w3-col l7 m12 s12">
+        <app-bctdv-p6-x2 [dataSource]="Data6" [height]="chartHeith" [width]="chartWith"></app-bctdv-p6-x2>
+    </div>
+    <div class="w3-col l3 m12 s12">
+        <app-giai-trinh #child6 [ngay] = "tuNgayVal"  [height] = "comHeith" [bieuDo] = "06"></app-giai-trinh>
+    </div>
+</div>
+<div class="w3-row">
+    <div class="w3-col l2 m12 s12">
+        <app-bctdv-p7-x1 [height]="chartHeith" [dataSource]="Data7x"></app-bctdv-p7-x1>
+    </div>
+    <div class="w3-col l7 m12 s12">
+        <app-bctdv-p7-x2 [dataSource]="Data7" [height]="chartHeith" [width]="chartWith"></app-bctdv-p7-x2>
+    </div>
+    <div class="w3-col l3 m12 s12">
+        <app-giai-trinh #child7 [ngay] = "tuNgayVal"  [height] = "comHeith" [bieuDo] = "07"></app-giai-trinh>
+    </div>
+</div>
+<div class="w3-row">
+    <div class="w3-col l2 m12 s12">
+        <app-bctdv-p8-x1 [height]="chartHeith" [dataSource]="Data8x"></app-bctdv-p8-x1>
+    </div>
+    <div class="w3-col l7 m12 s12">
+        <app-bctdv-p8-x2 [dataSource]="Data8" [height]="chartHeith" [width]="chartWith"></app-bctdv-p8-x2>
+    </div>
+    <div class="w3-col l3 m12 s12">
+        <app-giai-trinh #child8 [ngay] = "tuNgayVal"  [height] = "comHeith" [bieuDo] = "08"></app-giai-trinh>
+    </div>
+</div>
+<div class="w3-row">
+    <div class="w3-col l2 m12 s12">
+        <app-bctdv-p9-x1 [height]="chartHeith" [dataSource]="Data9x"></app-bctdv-p9-x1>
+    </div>
+    <div class="w3-col l7 m12 s12">
+        <app-bctdv-p9-x2 [dataSource]="Data9" [height]="chartHeith" [width]="chartWith"></app-bctdv-p9-x2>
+    </div>
+    <div class="w3-col l3 m12 s12">
+        <app-giai-trinh #child9 [ngay] = "tuNgayVal"  [height] = "comHeith" [bieuDo] = "09"></app-giai-trinh>
+    </div>
+</div>
+<div class="w3-row">
+    <div class="w3-col l2 m12 s12">
+        <app-bctdv-p10-x1 [height]="chartHeith" [dataSource]="Data10x"></app-bctdv-p10-x1>
+    </div>
+    <div class="w3-col l7 m12 s12">
+        <app-bctdv-p10-x2 [dataSource]="Data10" [height]="chartHeith" [width]="chartWith"></app-bctdv-p10-x2>
+    </div>
+    <div class="w3-col l3 m12 s12">
+        <app-giai-trinh #child10 [ngay] = "tuNgayVal"  [height] = "comHeith" [bieuDo] = "10"></app-giai-trinh>
+    </div>
+</div>
+
+<div class="w3-row">
+    <div class="w3-col l2 m12 s12">
+        <app-bctdv-p11-x1 [height]="chartHeith" [dataSource]="Data11x"></app-bctdv-p11-x1>
+    </div>
+    <div class="w3-col l7 m12 s12">
+        <app-bctdv-p11-x2 [dataSource]="Data11" [height]="chartHeith" [width]="chartWith"></app-bctdv-p11-x2>
+    </div>
+    <div class="w3-col l3 m12 s12">
+        <app-giai-trinh  #child11 [ngay] = "tuNgayVal"   [height] = "comHeith" [bieuDo] = "11"></app-giai-trinh>
+    </div>
+</div>
+<div class="w3-row">
+    <div class="w3-col l2 m12 s12">
+        <app-bctdv-p12-x1 [height]="chartHeith" [dataSource]="Data12x"></app-bctdv-p12-x1>
+    </div>
+    <div class="w3-col l7 m12 s12">
+        <app-bctdv-p12-x2 [dataSource]="Data12" [height]="chartHeith" [width]="chartWith"></app-bctdv-p12-x2>
+    </div>
+    <div class="w3-col l3 m12 s12">
+        <app-giai-trinh  #child12 [ngay] = "tuNgayVal"   [height] = "comHeith" [bieuDo] = "12"></app-giai-trinh>
+    </div>
+</div>
+<div class="w3-row">
+    <div class="w3-col l2 m12 s12">
+        <app-bctdv-p13-x1 [height]="chartHeith" [dataSource]="Data13x"></app-bctdv-p13-x1>
+    </div>
+    <div class="w3-col l7 m12 s12">
+        <app-bctdv-p13-x2 [dataSource]="Data13" [height]="chartHeith" [width]="chartWith"></app-bctdv-p13-x2>
+    </div>
+    <div class="w3-col l3 m12 s12">
+        <app-giai-trinh  #child13 [ngay] = "tuNgayVal"   [height] = "comHeith" [bieuDo] = "13"></app-giai-trinh>
+    </div>
+</div>
+<div class="w3-row">
+    <div class="w3-col l2 m12 s12">
+        <app-bctdv-p14-x1 [height]="chartHeith" [dataSource]="Data14x"></app-bctdv-p14-x1>
+    </div>
+    <div class="w3-col l7 m12 s12">
+        <app-bctdv-p14-x2 [dataSource]="Data14" [height]="chartHeith" [width]="chartWith"></app-bctdv-p14-x2>
+    </div>
+    <div class="w3-col l3 m12 s12">
+        <app-giai-trinh  #child14 [ngay] = "tuNgayVal"   [height] = "comHeith" [bieuDo] = "14"></app-giai-trinh>
+    </div>
+</div>
+<div class="w3-row">
+    <div class="w3-col l2 m12 s12">
+        <app-bctdv-p15-x1  [height]="chartHeith" [dataSource]="Data15x"></app-bctdv-p15-x1>
+    </div>
+    <div class="w3-col l7 m12 s12">
+        <app-bctdv-p15-x2 [dataSource]="Data15" [height]="chartHeith" [width]="chartWith"></app-bctdv-p15-x2>
+    </div>
+    <div class="w3-col l3 m12 s12">
+        <app-giai-trinh #child15 [ngay] = "tuNgayVal"  [height] = "comHeith" [bieuDo] = "15"></app-giai-trinh>
+    </div>
+</div>
+<div class="w3-row">
+    <div class="w3-col l2 m12 s12">
+        <app-bctdv-p16-x1 [height]="chartHeith" [dataSource]="Data16x"></app-bctdv-p16-x1>
+    </div>
+    <div class="w3-col l7 m12 s12">
+        <app-bctdv-p16-x2 [dataSource]="Data16" [height]="chartHeith" [width]="chartWith"></app-bctdv-p16-x2>
+    </div>
+    <div class="w3-col l3 m12 s12">
+        <app-giai-trinh #child16 [ngay] = "tuNgayVal"  [height] = "comHeith" [bieuDo] = "16"></app-giai-trinh>
+    </div>
+</div>
+<div class="w3-row">
+    <div class="w3-col l2 m12 s12">
+        <app-bctdv-p17-x1 [height]="chartHeith" [dataSource]="Data17x"></app-bctdv-p17-x1>
+    </div>
+    <div class="w3-col l7 m12 s12">
+        <app-bctdv-p17-x2 [dataSource]="Data17" [height]="chartHeith" [width]="chartWith"></app-bctdv-p17-x2>
+    </div>
+    <div class="w3-col l3 m12 s12">
+        <app-giai-trinh #child17 [ngay] = "tuNgayVal"  [height] = "comHeith" [bieuDo] = "17"></app-giai-trinh>
+    </div>
+</div>
+
+<div class="w3-row">
+    <div class="w3-col l2 m12 s12">
+        <app-bctdv-p18-x1 [height]="chartHeith" [dataSource]="Data18x"></app-bctdv-p18-x1>
+    </div>
+    <div class="w3-col l7 m12 s12">
+        <app-bctdv-p18-x2 [dataSource]="Data18" [height]="chartHeith" [width]="chartWith"></app-bctdv-p18-x2>
+    </div>
+    <div class="w3-col l3 m12 s12">
+        <app-giai-trinh #child18 [ngay] = "tuNgayVal"  [height] = "comHeith" [bieuDo] = "18"></app-giai-trinh>
+    </div>
+</div>
+
+<div class="w3-row">
+    <div class="w3-col l2 m12 s12">
+        <app-bctdv-p19-x1 [height]="chartHeith" [dataSource]="Data19x"></app-bctdv-p19-x1>
+    </div>
+    <div class="w3-col l7 m12 s12">
+        <app-bctdv-p19-x2 [dataSource]="Data19" [height]="chartHeith" [width]="chartWith"></app-bctdv-p19-x2>
+    </div>
+    <div class="w3-col l3 m12 s12">
+        <app-giai-trinh #child19 [ngay] = "tuNgayVal"  [height] = "comHeith" [bieuDo] = "19"></app-giai-trinh>
+    </div>
+</div>
+
+
+<!--    
+-->
+
+<dx-speed-dial-action icon="filter" label="Lọc" [index]="1" (onClick)="showFilter()">
+</dx-speed-dial-action>
+
+<dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" 
+    [(visible)]="loadIndicatorVisible" [showIndicator]="true" [showPane]="true" [shading]="true"
+    [closeOnOutsideClick]="false">
+</dx-load-panel>

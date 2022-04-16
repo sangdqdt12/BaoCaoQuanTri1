@@ -1,0 +1,229 @@
+<dx-popup maxWidth="600" [showTitle]="false" title="Filter" [dragEnabled]="false" [closeOnOutsideClick]="false"
+    [(visible)]="popupVisible">
+
+    <div class="dx-fieldset">
+
+
+        <dx-tab-panel>
+            <dxi-item title="Cơ bản">
+                <table class="w3-table" width ="100%">
+                    <tr>
+                        <div class="dx-field">
+                            <div class="dx-field-label">Từ ngày</div>
+                            <div class="dx-field-value">
+                                <dx-date-box [(value)]="tuNgayVal" type="date">
+                                </dx-date-box>
+                            </div>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div class="dx-field">
+                            <div class="dx-field-label">Đến ngày</div>
+                            <div class="dx-field-value">
+                                <dx-date-box [(value)]="denNgayVal" type="date">
+                                </dx-date-box>
+                            </div>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div class="dx-field">
+                            <div class="dx-field-label">Khối</div>
+                            <div class="dx-field-value">
+                                <dx-select-box [dataSource]="donViCoSos" displayExpr="ten_nh" valueExpr="ma_nh"
+                                    [(value)]="khoiVal" >
+
+                                </dx-select-box>
+                            </div>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div class="dx-field">
+                            <div class="dx-field-label">Đơn vị</div>
+                            <div class="dx-field-value">
+                                <dx-select-box [dataSource]="donviList" displayExpr="Ten_dvcs" valueExpr="Ma_dvcs"
+                                    [(value)]="donviVal" [showClearButton]="true">
+
+                                </dx-select-box>
+                            </div>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div class="dx-field">
+                            <div class="dx-field-label">Cấp</div>
+                            <div class="dx-field-value">
+                                <dx-select-box [dataSource]="capCbxd" displayExpr="Ten" valueExpr="Ma"
+                                    [(value)]="capVal" [showClearButton]="true">
+                                </dx-select-box>
+                            </div>
+                        </div>
+                    </tr>
+                </table>
+            </dxi-item>
+
+            <dxi-item title="Nâng cao">
+                <table class="w3-table" width ="100%">
+                    <tr>
+                        <div class="dx-field">
+                            <div class="dx-field-label">Mã DRA</div>
+                            <div class="dx-field-value">
+                                <dx-select-box [dataSource]="bangDRA" displayExpr="ma_dra" valueExpr="ma_dra"
+                                    [(value)]="draVal" [showClearButton]="true">
+                                </dx-select-box>
+                            </div>
+                        </div>
+                    </tr>
+                   
+                    <tr>
+                        <div class="dx-field">
+                            <div class="dx-field-label">Thành phố</div>
+                            <div class="dx-field-value">
+                                <dx-select-box [dataSource]="bangThanhPho" displayExpr="Ten_TP" valueExpr="Ma_TP"
+                                    [(value)]="thanhPhoVal" [showClearButton]="true">
+
+                                </dx-select-box>
+                            </div>
+                        </div>
+                    </tr>
+
+                    <tr>
+                        <div class="dx-field">
+                            <div class="dx-field-label">Lọc theo Quận huyện</div>
+                            <div class="dx-field-value">
+                                <dx-check-box [(value)]="isQuanHuyen"></dx-check-box>
+                            </div>
+                        </div>
+                    </tr>
+
+                </table>
+            </dxi-item>
+
+        </dx-tab-panel>
+
+    </div>
+    <div style="position: absolute;right: 50px;bottom: 10px; ">
+        <dx-button class="button-info" with="200" text="   Ok  " (onClick)="fillData()">
+        </dx-button>
+    </div>
+
+    <div style="position: absolute;right: 150px;bottom: 10px;  ">
+        <dx-button class="button-info" text="Cancel" (onClick)="close()">
+        </dx-button>
+    </div>
+</dx-popup>
+
+
+<div class="long-title">
+    <p>BÁO CÁO CƠ SỞ DỮ LIỆU KHÁCH HÀNG CR THEO ĐẠI LÝ - Từ ngày {{this.tuNgayVal|date: 'dd-MM-yyyy'}} đến ngày
+        {{this.denNgayVal|date: 'dd-MM-yyyy'}}</p>
+</div>
+
+
+<dx-data-grid id="gridDetail" [height]="gridHeight" [showColumnHeaders]="true" [dataSource]="reportDataArr1"
+    [showBorders]="true" [focusedRowEnabled]="false" [focusedRowIndex]="0" [columnHidingEnabled]="false"
+    [columnAutoWidth]="false" [showColumnLines]="true" [showRowLines]="true" [columnAutoWidth]="true"
+    (onRowPrepared)="onRowPrepared($event)" [repaintChangesOnly]="true" (onCellPrepared)="onCellPrepared($event)"
+    [rowAlternationEnabled]="false">
+
+    <dxo-paging [enabled]="false"></dxo-paging>
+    <dxo-scrolling mode="standard">
+        <!-- or "virtual" | "infinite" -->
+    </dxo-scrolling>
+
+    <dxo-sorting mode="none">
+        <!-- or "multiple" | "none" -->
+    </dxo-sorting>
+
+
+    <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+
+    <dxo-sorting mode="none">
+        <!-- or "multiple" | "none" -->
+    </dxo-sorting>
+
+
+    <dxi-column dataField="Ma_So" caption="Mã số" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="Chi_Tieu" caption="Chỉ tiêu" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="So_Luong" caption="Số lượng" format="#,##0.#" headerCellTemplate="titleHeaderTemplate0">
+    </dxi-column>
+    <dxi-column dataField="TH01" caption="TH01" format="#,##0.#" headerCellTemplate="titleHeaderTemplate0">
+    </dxi-column>
+    <dxi-column dataField="TH02" caption="TH02" format="#,##0.#" headerCellTemplate="titleHeaderTemplate0">
+    </dxi-column>
+    <dxi-column dataField="TH03" caption="TH03" format="#,##0.#" headerCellTemplate="titleHeaderTemplate0">
+    </dxi-column>
+    <dxi-column dataField="TH04" caption="TH04" format="#,##0.#" headerCellTemplate="titleHeaderTemplate0">
+    </dxi-column>
+    <dxi-column dataField="TH05" caption="TH05" format="#,##0.#" headerCellTemplate="titleHeaderTemplate0">
+    </dxi-column>
+    <dxi-column dataField="TH06" caption="TH06" format="#,##0.#" headerCellTemplate="titleHeaderTemplate0">
+    </dxi-column>
+    <dxi-column dataField="TH07" caption="TH07" format="#,##0.#" headerCellTemplate="titleHeaderTemplate0">
+    </dxi-column>
+    <dxi-column dataField="TH08" caption="TH08" format="#,##0.#" headerCellTemplate="titleHeaderTemplate0">
+    </dxi-column>
+    <dxi-column dataField="TH09" caption="TH09" format="#,##0.#" headerCellTemplate="titleHeaderTemplate0">
+    </dxi-column>
+    <dxi-column dataField="TH10" caption="TH10" format="#,##0.#" headerCellTemplate="titleHeaderTemplate0">
+    </dxi-column>
+    <dxi-column dataField="TH11" caption="TH11" format="#,##0.#" headerCellTemplate="titleHeaderTemplate0">
+    </dxi-column>
+    <dxi-column dataField="TH12" caption="TH12" format="#,##0.#" headerCellTemplate="titleHeaderTemplate0">
+    </dxi-column>
+    <dxi-column dataField="TH13" caption="TH13" format="#,##0.#" headerCellTemplate="titleHeaderTemplate0">
+    </dxi-column>
+    <dxi-column dataField="TH14" caption="TH14" format="#,##0.#" headerCellTemplate="titleHeaderTemplate0">
+    </dxi-column>
+    <dxi-column dataField="TH15" caption="TH15" format="#,##0.#" headerCellTemplate="titleHeaderTemplate0">
+    </dxi-column>
+    <dxi-column dataField="TH16" caption="TH16" format="#,##0.#" headerCellTemplate="titleHeaderTemplate0">
+    </dxi-column>
+    <dxi-column dataField="TH17" caption="TH17" format="#,##0.#" headerCellTemplate="titleHeaderTemplate0">
+    </dxi-column>
+    <dxi-column dataField="TH18" caption="TH18" format="#,##0.#" headerCellTemplate="titleHeaderTemplate0">
+    </dxi-column>
+    <dxi-column dataField="TH19" caption="TH19" format="#,##0.#" headerCellTemplate="titleHeaderTemplate0">
+    </dxi-column>
+    <dxi-column dataField="TH20" caption="TH20" format="#,##0.#" headerCellTemplate="titleHeaderTemplate0">
+    </dxi-column>
+    <dxi-column dataField="TH21" caption="TH21" format="#,##0.#" headerCellTemplate="titleHeaderTemplate0">
+    </dxi-column>
+    <dxi-column dataField="TH22" caption="TH22" format="#,##0.#" headerCellTemplate="titleHeaderTemplate0">
+    </dxi-column>
+    <dxi-column dataField="TH23" caption="TH23" format="#,##0.#" headerCellTemplate="titleHeaderTemplate0">
+    </dxi-column>
+    <dxi-column dataField="TH24" caption="TH24" format="#,##0.#" headerCellTemplate="titleHeaderTemplate0">
+    </dxi-column>
+    <dxi-column dataField="TH25" caption="TH25" format="#,##0.#" headerCellTemplate="titleHeaderTemplate0">
+    </dxi-column>
+    <dxi-column dataField="TH26" caption="TH26" format="#,##0.#" headerCellTemplate="titleHeaderTemplate0">
+    </dxi-column>
+    <dxi-column dataField="TH27" caption="TH27" format="#,##0.#" headerCellTemplate="titleHeaderTemplate0">
+    </dxi-column>
+    <dxi-column dataField="TH28" caption="TH28" format="#,##0.#" headerCellTemplate="titleHeaderTemplate0">
+    </dxi-column>
+    <dxi-column dataField="TH29" caption="TH29" format="#,##0.#" headerCellTemplate="titleHeaderTemplate0">
+    </dxi-column>
+    <dxi-column dataField="TH30" caption="TH30" format="#,##0.#" headerCellTemplate="titleHeaderTemplate0">
+    </dxi-column>
+    <dxi-column dataField="TH31" caption="TH31" format="#,##0.#" headerCellTemplate="titleHeaderTemplate0">
+    </dxi-column>
+
+
+    <div *dxTemplate="let info of 'titleHeaderTemplate0'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+
+
+
+</dx-data-grid>
+
+
+
+
+
+
+
+
+
+<dx-speed-dial-action icon="filter" label="" [index]="1" (onClick)="showFilter()">
+</dx-speed-dial-action>

@@ -1,0 +1,74 @@
+<div class="ExDiv">
+<dx-chart id="dv01-db01" title="Tháng" [dataSource]="dataSource"
+resolveLabelOverlapping="stack"
+>
+
+    <dxo-size
+    [height]="height"
+    [width]="width">
+</dxo-size>
+
+    <dxi-series  valueField="So_Luong" name="Lượt xe" [color]="color1">
+        <dxo-label
+        position = "inside"
+        backgroundColor="tran"
+        opacity = "0"
+        [visible]="true"
+        [format]="{
+            type: 'fixedPoint',
+            precision: '0'
+        }"
+        
+        >
+        <dxo-font [color] = 'colorF1'>
+        </dxo-font>
+    </dxo-label>
+    </dxi-series>
+
+
+
+    <dxo-common-series-settings
+    argumentField="Chi_tieu"
+    type="line"
+    hoverMode="allArgumentPoints"
+    selectionMode="allArgumentPoints" [color]="color2">
+    <dxo-label
+        position = "inside"
+        backgroundColor="tran"
+        opacity = "0"
+        [visible]="true"
+        [format]="{
+            type: 'fixedPoint',
+            precision: '0'
+        }"
+        
+        >
+        <dxo-font [color]='colorF2'>
+
+        </dxo-font>
+        
+    </dxo-label>
+</dxo-common-series-settings>
+
+
+
+    <dxi-value-axis 
+    [visible]="true"
+
+    >
+    <dxo-break-style 
+        line ="waved">
+    </dxo-break-style>
+    <dxo-grid [visible]="true"></dxo-grid>
+    </dxi-value-axis>
+
+
+ 
+
+
+
+    <!-- <dxo-legend verticalAlignment="bottom" horizontalAlignment="center">
+    </dxo-legend> -->
+    <dxo-export [enabled]="true"></dxo-export>
+</dx-chart>
+</div>

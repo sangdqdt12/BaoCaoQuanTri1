@@ -1,0 +1,114 @@
+<p>test-tab works!</p>
+
+<div id="London" [style.display]="vTab1">
+    <h2>London</h2>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+  </div>
+  
+  <div id="Paris" class="city" [style.display]="vTab2">
+    <h2>Paris</h2>
+    <p>Paris is the capital of France.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+  </div>
+  
+  <div id="Tokyo" class="city" [style.display]="vTab3">
+    <h2>Tokyo</h2>
+    <p>Tokyo is the capital of Japan.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+    <p>London is the capital of England.</p>
+  </div>
+
+  <dx-speed-dial-action
+  icon="filter"
+  label=""
+  [index]="1"
+  (onClick)="addRow()">
+</dx-speed-dial-action>
+<!--
+<dx-speed-dial-action
+  icon="trash"
+  label="Delete row"
+  [index]="2"
+  (onClick)="deleteRow()">
+</dx-speed-dial-action>
+<dx-speed-dial-action 
+  icon="edit"
+  label="Edit row"
+  [index]="3"
+  (onClick)="editRow()">
+</dx-speed-dial-action>
+-->
+<div style="position: absolute;left: 1px;bottom: 10px;z-index: 5;" class=" w3-light-grey">
+  <dx-tabs [dataSource]="cap1s" 
+  [width]="innerWidth"
+  [scrollByContent]="true"
+  [showNavButtons]="true"
+  (onItemClick)="selCap1($event)"></dx-tabs>
+</div>
+
+
+
+<dx-popup
+    [(width)]="popupWidth"
+    [(height)]="popupHeight"
+
+    
+    [showTitle]="true"
+    title="Chi tiết"
+    [dragEnabled]="false"
+    [closeOnOutsideClick]="false"
+    [(visible)]="popupDetailVisible">
+
+    
+</dx-popup>

@@ -1,0 +1,15 @@
+<dx-pie-chart id="pie" 
+title="TFS" 
+palette="bright" 
+[dataSource]="dataSource"
+>
+<dxi-series argumentField="Chi_tieu" valueField="So_Luong" [color] ="color1">
+    <dxo-label [visible]="true">
+        <dxo-connector [visible]="true" [width]="1"></dxo-connector>
+        <dxo-font [color]='colorF1'>
+        </dxo-font>
+    </dxo-label>
+</dxi-series>
+<dxo-size [width]="width" [height]="height"></dxo-size>
+<dxo-export [enabled]="true"></dxo-export>
+</dx-pie-chart>

@@ -1,0 +1,35 @@
+<p>testmd-daskboard works!</p>
+<dx-chart id="chart" title="Kinh doanh" [dataSource]="data_CP_WBI_BE_01_01">
+
+    <dxo-size
+[height]="300"
+[width]="chartWith">
+</dxo-size>
+
+    <dxi-series valueField="Xe_Ky" name="Trong ngày"></dxi-series>
+    <dxi-series valueField="Xe_Ky_Luy_Ke" name="Lỹ kế"></dxi-series>
+
+    <dxi-series axis="CT3" type="line" valueField="Htkh_Xe_Ky" name="% Hoàn thành" color="black">
+    </dxi-series>
+
+    <dxo-common-series-settings argumentField="Ten_Dvcs" type="bar" hoverMode="allArgumentPoints"
+        selectionMode="allArgumentPoints">
+        <dxo-label [visible]="true" [format]="{
+        type: 'fixedPoint',
+        precision: '0'
+    }">
+        </dxo-label>
+    </dxo-common-series-settings>
+
+    <dxi-value-axis>
+        <dxo-grid [visible]="true"></dxo-grid>
+    </dxi-value-axis>
+    <dxi-value-axis minValueMargin="0" name="CT3" position="right">
+        <dxo-grid [visible]="true"></dxo-grid>
+        <dxo-title text="% hoàn thành"></dxo-title>
+    </dxi-value-axis>
+
+    <dxo-legend verticalAlignment="bottom" horizontalAlignment="center">
+    </dxo-legend>
+    <dxo-export [enabled]="true"></dxo-export>
+</dx-chart>

@@ -1,0 +1,104 @@
+<dx-popup maxWidth="600" [showTitle]="false" title="Filter" [dragEnabled]="false" [closeOnOutsideClick]="false"
+    [(visible)]="popupVisible">
+
+    <div class="dx-fieldset">
+
+        <div class="dx-field">
+            <div class="dx-field-label">Từ ngày</div>
+            <div class="dx-field-value">
+                <dx-date-box [(value)]="tuNgayVal" type="date">
+                </dx-date-box>
+            </div>
+        </div>
+
+        <div class="dx-field">
+            <div class="dx-field-label">Khối</div>
+            <div class="dx-field-value">
+                <dx-select-box [dataSource]="donViCoSos" displayExpr="ten_nh" valueExpr="ma_nh" [(value)]="khoiVal">
+                </dx-select-box>
+            </div>
+        </div>
+    
+
+    </div>
+    
+    <div style="position: absolute;right: 50px;bottom: 10px; ">
+        <dx-button class="button-info" with="200" text="   Ok  " (onClick)="loadServeData()">
+        </dx-button>
+    </div>
+    <div style="position: absolute;right: 150px;bottom: 10px;  ">
+        <dx-button class="button-info" text="Cancel" (onClick)="close()">
+        </dx-button>
+    </div>
+</dx-popup>
+
+
+
+<div class="w3-row w3-sand ">
+    <div class="w3-col l6 m12 s12 ">
+        <app-bckd3-p1 [xeGiao]="xeGiao" [soKH]="soKH">
+        </app-bckd3-p1>
+    </div>
+    <div class="w3-col l6 m12 s12 ">
+        <app-bckd3-p2 [dra]="dra">
+        </app-bckd3-p2>
+    </div>
+
+</div>
+
+
+
+<div class="w3-row  ">
+    <div class="w3-col l6 m12 s12">
+        <app-kd10-dra-xe-giao-thang [dataSource]="data_CP_WBI_BE_01_10" [width]="rongChart10" [height]="caoChart10">
+        </app-kd10-dra-xe-giao-thang>
+    </div>
+    <div class="w3-col l6 m12 s12">
+        <app-kd12-dra-xe-giao-quy [dataSource]="data_CP_WBI_BE_01_12" [width]="rongChart12" [height]="caoChart12">
+        </app-kd12-dra-xe-giao-quy>
+    </div>
+</div>
+
+<div class="w3-row ">
+
+    <div class="w3-col l6 m12 s12">
+        <app-kd11-dra-thang [dataSource]="data_CP_WBI_BE_01_11" [width]="rongChart11" [height]="caoChart11">
+        </app-kd11-dra-thang>
+    </div>
+
+    <div class="w3-col l6 m12 s12">
+        <div class="w3-cell">
+            <app-kd3-con-ky [dataSource]="data_CP_WBI_BE_01_03" [width]="rongChart3" [height]="caoChart3">
+            </app-kd3-con-ky>
+        </div>
+        <div class="w3-cell">
+            <app-kd6-ton-kho3-thang [dataSource]="data_CP_WBI_BE_01_06" [width]="rongChart6" [height]="caoChart6">
+            </app-kd6-ton-kho3-thang>
+        </div>
+
+    </div>
+</div>
+
+
+
+<div class="w3-cell-row">
+    <div class="w3-container w3-cell w3-cell-middle">
+        <dx-tabs [dataSource]="danhSachDonVis" [width]="barWidth" [scrollByContent]="true" [showNavButtons]="true"
+            (onItemClick)="filterDonVi($event)"></dx-tabs>
+    </div>
+
+    <div class="w3-container w3-cell w3-cell-middle">
+
+        <dx-button icon="search" (onClick)="showFilter()">
+        </dx-button>
+
+    </div>
+
+
+</div>
+
+
+<!--
+<dx-speed-dial-action icon="search" label="Lọc" [index]="1" (onClick)="showFilter()">
+</dx-speed-dial-action>
+-->

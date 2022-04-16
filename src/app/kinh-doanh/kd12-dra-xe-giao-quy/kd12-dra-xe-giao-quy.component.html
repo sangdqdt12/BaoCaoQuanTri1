@@ -1,0 +1,126 @@
+<div class="ExDiv">
+<dx-chart id="chart" title="Xe giao DRA quý" [dataSource]="dataSource"
+resolveLabelOverlapping="stack"
+>
+
+    <dxo-size
+    [height]="height"
+    [width]="width">
+</dxo-size>
+
+    <dxi-series  valueField="Giao_Lk" name="Giao lũy kế" [color]="color1">
+        <dxo-label
+        position = "inside"
+        backgroundColor="tran"
+        opacity = "0"
+        [visible]="true"
+        [format]="{
+            type: 'fixedPoint',
+            precision: '0'
+        }"
+        
+        >
+        <dxo-font [color] = 'colorF1'>
+        </dxo-font>
+    </dxo-label>
+    </dxi-series>
+    <dxi-series   valueField="Giao_Va_ChoGiao" name="Giao + chờ giao" [color]="color2">
+
+    <dxo-label
+        position = "inside"
+        backgroundColor="tran"
+        opacity = "0"
+        [visible]="true"
+        [format]="{
+            type: 'fixedPoint',
+            precision: '0'
+        }"
+        
+        >
+        <dxo-font [color] = 'colorF2'>
+
+        </dxo-font>
+        
+    </dxo-label>
+
+    </dxi-series>
+    <dxi-series   valueField="Ke_hoach" name="Kế hoạch" [color]="color3">
+
+        <dxo-label
+            position = "inside"
+            backgroundColor="tran"
+            opacity = "0"
+            [visible]="true"
+            [format]="{
+                type: 'fixedPoint',
+                precision: '0'
+            }"
+            
+            >
+            <dxo-font [color] = 'colorF3'>
+    
+            </dxo-font>
+            
+        </dxo-label>
+    
+        </dxi-series>
+    <dxi-series axis="CT3" type="line" valueField="HTKH" name="% Dự kiến" [color]="color4">
+    </dxi-series>
+
+
+    <dxo-common-series-settings
+    argumentField="Chi_tieu"
+    type="bar"
+    hoverMode="allArgumentPoints"
+    selectionMode="allArgumentPoints">
+    <dxo-label
+        position = "inside"
+        backgroundColor="tran"
+        opacity = "0"
+        [visible]="true"
+        [format]="{
+            type: 'fixedPoint',
+            precision: '0'
+        }"
+        
+        >
+        <dxo-font [color] = 'colorF4'>
+
+        </dxo-font>
+        
+    </dxo-label>
+</dxo-common-series-settings>
+
+
+
+    <dxi-value-axis 
+    [visible]="true"
+    autoBreaksEnabled="true"
+    minDataValue = 0
+    minValueMargin = "0" 
+    maxValueMargin ="0"
+    >
+    <dxo-break-style 
+        line ="waved">
+    </dxo-break-style>
+    <dxo-grid [visible]="true"></dxo-grid>
+    </dxi-value-axis>
+
+
+ 
+
+
+    <dxi-value-axis  name="CT3" position="right"
+    minValueMargin = "0" maxValueMargin ="0"
+
+    >
+        <dxo-grid [visible]="true"></dxo-grid>
+        <dxo-title text="% Dự kiến"></dxo-title>
+    </dxi-value-axis>
+
+    <dxo-legend verticalAlignment="bottom" horizontalAlignment="center">
+    </dxo-legend>
+    <dxo-export [enabled]="true"></dxo-export>
+</dx-chart>
+
+</div>

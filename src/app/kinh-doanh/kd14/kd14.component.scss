@@ -1,0 +1,31 @@
+div.ExBoder14 {
+    border: 1px solid rgb(4, 0, 255); 
+    margin: 2px;
+    background-color: rgb(255, 255, 255);
+  }
+
+::ng-deep .rect14{
+text-align: center;
+color: blue;
+font-size: 16px;
+font-weight: bold;
+padding-top: 10px;
+
+height: 100%;
+}
+
+::ng-deep .rect14-1{
+  text-align: center;
+  color: blue;
+  font-size: 16px;
+  font-weight: bold;
+  padding-top: 25%;
+   height: 100%;
+  }
+::ng-deep .demo-light-14{
+    background:  rgb(224, 210, 14);
+}
+
+::ng-deep .demo-dark-14{
+  background:  rgb(64, 110, 26);
+}

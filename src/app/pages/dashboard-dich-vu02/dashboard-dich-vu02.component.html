@@ -1,0 +1,180 @@
+<!--
+<dx-popup maxWidth="600" [showTitle]="false" title="Filter" [dragEnabled]="false" [closeOnOutsideClick]="false"
+    [(visible)]="popupVisible">
+
+
+    <app-tim-kiem-loai1 [(tuNgayVal)]="tuNgayVal" [khois]="khois" [(khoiVal)]="khoiVal" (searchChange)="loadServeData">
+    </app-tim-kiem-loai1>
+
+    <div style="position: absolute;right: 50px;bottom: 10px; ">
+        <dx-button class="button-info" with="200" text="   Ok  " (onClick)="loadServeData()">
+        </dx-button>
+    </div>
+
+    <div style="position: absolute;right: 150px;bottom: 10px;  ">
+        <dx-button class="button-info" text="Cancel" (onClick)="close()">
+        </dx-button>
+    </div>
+</dx-popup>
+-->
+
+
+<dx-popup maxWidth="600" [showTitle]="false" title="Filter" [dragEnabled]="false" [closeOnOutsideClick]="false"
+    [(visible)]="popupVisible">
+
+
+
+    <div class="dx-fieldset">
+
+        <div class="dx-field">
+            <div class="dx-field-label">Từ ngày</div>
+            <div class="dx-field-value">
+                <dx-date-box [(value)]="tuNgayVal" type="date">
+                </dx-date-box>
+            </div>
+        </div>
+
+        <div class="dx-field">
+            <div class="dx-field-label">Khối</div>
+            <div class="dx-field-value">
+                <dx-select-box [dataSource]="donViCoSos" displayExpr="ten_nh" valueExpr="ma_nh" [(value)]="khoiVal">
+                </dx-select-box>
+            </div>
+        </div>
+
+
+    </div>
+    <div style="position: absolute;right: 50px;bottom: 10px; ">
+        <dx-button class="button-info" with="200" text="   Ok  " (onClick)="loadServeData()">
+        </dx-button>
+    </div>
+
+    <div style="position: absolute;right: 150px;bottom: 10px;  ">
+        <dx-button class="button-info" text="Cancel" (onClick)="close()">
+        </dx-button>
+    </div>
+</dx-popup>
+
+<div class="w3-row w3-sand ">
+    <div class="w3-col l6 m12 s12 ">
+        <app-dv0201 [doanhthulenhngay]="doanhthulenhngay">
+        </app-dv0201>
+    </div>
+    <div class="w3-col l6 m12 s12 ">
+        <app-dv0202 [doanhthulenhluyKe]="doanhthulenhluyKe">
+        </app-dv0202>
+    </div>
+
+</div>
+
+<!-- <div class="w3-row w3-sand ">
+    <div class="w3-col l6 m12 s12 ">
+        <div class="w3-panel">
+            <div class="w3-border w3-border-red  w3-dark-grey">
+                <div class="w3-panel">
+                    <div>
+                        <div>
+                            <h5>Doanh thu mở lệnh ngày : {{doanhthulenhngay| number}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="w3-col l6 m12 s12 ">
+        <div class="w3-panel">
+            <div class="w3-border w3-border-red  w3-dark-grey">
+                <div class="w3-panel">
+                    <div class="w3-cell-row">
+                        <div class="w3-container w3-cell w3-cell-middle">
+                            <h5>Doanh thu lệnh lũy kế: {{doanhthulenhluyKe| number}}</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div> -->
+
+
+
+<div class="w3-row">
+    <div class="w3-col l6 m12 s12">
+
+        <app-dv02-bd05 [dataSource]="CP_WBI_RO_01_05" [width]="rongChart1" [height]="caoChart1">
+        </app-dv02-bd05>
+
+
+
+
+
+
+    </div>
+    <div class="w3-col l6 m12 s12">
+        <div class="w3-row">
+
+            <app-dv02-bd06 [dataSource]="CP_WBI_RO_01_06" [width]="rongChart2" [height]="caoChart2">
+            </app-dv02-bd06>
+
+
+
+        </div>
+
+        <div class="w3-row">
+
+            <app-dv02-bd07 [dataSource]="CP_WBI_RO_01_07" [width]="rongChart3" [height]="caoChart3">
+            </app-dv02-bd07>
+
+
+
+        </div>
+
+        <div class="w3-row">
+
+            <app-dv02-bd08 [dataSource]="CP_WBI_RO_01_08" [width]="rongChart4" [height]="caoChart4">
+            </app-dv02-bd08>
+
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+
+
+
+<div class="w3-cell-row">
+
+    <div class="w3-container w3-cell w3-cell-middle">
+        <dx-tabs [dataSource]="danhSachDonVis" [width]="barWidth" [scrollByContent]="true" [showNavButtons]="true"
+            (onItemClick)="filterDonVi($event)"></dx-tabs>
+    </div>
+
+    <div class="w3-container w3-cell w3-cell-middle">
+
+        <dx-button icon="search" (onClick)="showFilter()">
+        </dx-button>
+
+    </div>
+
+</div>
+
+<div class="w3-cell-row">
+
+    <div class="w3-container w3-cell w3-cell-middle">
+        <dx-tabs [dataSource]="danhSachLoaiHinhs" [width]="barWidth" [scrollByContent]="true" [showNavButtons]="true"
+            (onItemClick)="filterLoaiHinh($event)"></dx-tabs>
+    </div>
+
+
+
+</div>
+<dx-speed-dial-action icon="search" label="Lọc" [index]="1" (onClick)="showFilter()">
+</dx-speed-dial-action>

@@ -1,0 +1,80 @@
+<div class="w3-display-container w3-deep-orange" style="height:45px;">
+    <div class="w3-display-left">
+      <h6>Tồn kho chung</h6>
+    </div>
+    <div class="w3-display-right">
+      <dx-button
+      class="button-info"
+      text="Filter"
+      (onClick)="showFilter()">
+      </dx-button>
+    </div>
+  </div>
+  
+
+  <dx-popup
+    maxWidth = "600"
+    [showTitle]="true"
+    title="Filter"
+    [dragEnabled]="false"
+    [closeOnOutsideClick]="false"
+    [(visible)]="popupVisible">
+
+
+    <div class="dx-fieldset">
+      <div class="dx-field">
+          <div class="dx-field-label">Date</div>
+          <div class="dx-field-value">
+              <dx-date-box
+                  [value]="ngayVal"
+                  type="date">
+              </dx-date-box>
+          </div>
+      </div>
+
+      <div class="dx-field">
+          <div class="dx-field-label">Khối</div>
+          <div class="dx-field-value">
+              <dx-select-box 
+              [dataSource]="donViCoSos"
+              displayExpr="ten_nh"
+              valueExpr="ma_nh"
+              [(value)] = "khoiVal"
+                >
+
+              </dx-select-box>
+          </div>
+      </div>
+
+      <div class="dx-field">
+        <div class="dx-field-label">Cấp</div>
+        <div class="dx-field-value">
+            <dx-select-box 
+            [dataSource]="capCbxd"
+            displayExpr="Ten"
+            valueExpr="Ma"
+            [(value)] = "capVal"
+            >
+            </dx-select-box>
+        </div>
+    </div>
+
+    </div>
+    <div style="position: absolute;right: 50px;bottom: 10px; ">
+      <dx-button
+      class="button-info"
+      with = "200"
+      text="   Ok  "
+      (onClick)="fillData()">
+      </dx-button>
+    </div>
+
+    <div style="position: absolute;right: 150px;bottom: 10px;  ">
+      <dx-button
+      class="button-info"
+      text="Cancel"
+      (onClick)="close()">
+      </dx-button>
+    </div>
+</dx-popup>
+

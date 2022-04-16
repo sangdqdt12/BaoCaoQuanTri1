@@ -1,0 +1,37 @@
+::ng-deep #grid {
+    max-height: 750px;
+}
+
+::ng-deep.dx-data-row td {  
+    color: rgb(0, 0, 0);  
+}  
+
+
+::ng-deep.dx-datagrid-headers .cls {  
+    white-space: normal;  
+    color:rgb(226, 53, 9);
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: small; 
+    padding: 160px;
+    margin-top: 100px;
+    white-space : normal;
+}  
+
+
+::ng-deep.dx-datagrid-headers .cls2 {  
+    color:rgb(226, 53, 9);
+    text-align:center;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: large; 
+}  
+
+
+.myPopover .dx-popup-content {  
+    padding: 0;  
+} 
+
+::ng-deep.dx-popup-content {
+padding: 5px;
+
+}

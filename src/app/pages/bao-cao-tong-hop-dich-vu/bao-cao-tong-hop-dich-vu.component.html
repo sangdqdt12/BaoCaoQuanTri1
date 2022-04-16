@@ -1,0 +1,356 @@
+<div class="long-title">
+    <p>BÁO CÁO NGÀY DỊCH VỤ - Từ ngày {{this.tuNgayVal|date: 'dd-MM-yyyy'}} đến ngày {{this.denNgayVal|date: 'dd-MM-yyyy'}}</p>
+</div>
+  
+  <dx-popup
+    maxWidth = "600"
+    [showTitle]="true"
+    title="Filter"
+    [dragEnabled]="false"
+    [closeOnOutsideClick]="false"
+    [(visible)]="popupVisible">
+
+    <div class="dx-fieldset">
+
+       
+
+        <div class="dx-field">
+            <div class="dx-field-label">Từ ngay</div>
+            <div class="dx-field-value">
+                <dx-date-box
+                    [(value)]="tuNgayVal"
+                    type="date">
+                </dx-date-box>
+            </div>
+        </div>
+
+
+        <div class="dx-field">
+            <div class="dx-field-label">Đến ngày</div>
+            <div class="dx-field-value">
+                <dx-date-box
+                    [(value)]="denNgayVal"
+                    type="date">
+                </dx-date-box>
+            </div>
+        </div>
+  
+        <div class="dx-field">
+            <div class="dx-field-label">Khối</div>
+            <div class="dx-field-value">
+                <dx-select-box 
+                [dataSource]="donViCoSos"
+                displayExpr="ten_nh"
+                valueExpr="ma_nh"
+                [(value)] = "khoiVal"
+                  >
+  
+                </dx-select-box>
+            </div>
+        </div>
+  
+        <div class="dx-field">
+          <div class="dx-field-label">Cấp</div>
+          <div class="dx-field-value">
+              <dx-select-box 
+              [dataSource]="capCbxd"
+              displayExpr="Ten"
+              valueExpr="Ma"
+              [(value)] = "capVal"
+              >
+              </dx-select-box>
+          </div>
+      </div>
+  
+      </div>
+      <div style="position: absolute;right: 50px;bottom: 10px; ">
+        <dx-button
+        class="button-info"
+        with = "200"
+        text="   Ok  "
+        (onClick)="fillData()">
+        </dx-button>
+      </div>
+  
+      <div style="position: absolute;right: 150px;bottom: 10px;  ">
+        <dx-button
+        class="button-info"
+        text="Cancel"
+        (onClick)="close()">
+        </dx-button>
+      </div>
+</dx-popup>
+
+
+
+<dx-tab-panel >
+    <dxi-item title="DOANH THU">
+        <dx-chart
+        
+            id="chart"
+           
+            [dataSource]="duLieuBieuDoDTs"
+            >
+
+            <dxo-size
+                [height]="chartHeight"
+                >
+            </dxo-size>
+
+            <dxi-series valueField="CT1" name="Trong ngày" [color]="color1"></dxi-series>
+            <dxi-series valueField="CT2" name="Lũy kế" [color]="color2"></dxi-series>
+            <dxi-series valueField="CT3" name="Kế hoạch" [color]="color3"></dxi-series>
+            <dxi-series
+                axis="CT4"
+                type="line"
+                valueField="CT4"
+                name="% Hoàn thành"
+                [color]="color4">
+            </dxi-series>
+
+            <dxo-common-series-settings
+                argumentField="DonVi"
+                type="bar"
+                hoverMode="allArgumentPoints"
+                selectionMode="allArgumentPoints">
+                <dxo-label
+                    [visible]="true"
+                    [format]="{
+                        type: 'fixedPoint',
+                        precision: '0'
+                    }">
+                </dxo-label>
+            </dxo-common-series-settings>
+
+            <dxi-value-axis>
+                <dxo-grid [visible]="true"></dxo-grid>
+            </dxi-value-axis>
+            <dxi-value-axis
+                minValueMargin = "0"
+            
+                name="CT4"
+                position="right">
+                <dxo-grid [visible]="true"></dxo-grid>
+                <dxo-title text="Tỷ lệ hoàn thành"></dxo-title>
+            </dxi-value-axis>
+
+            <dxo-legend
+                verticalAlignment="bottom"
+                horizontalAlignment="center">
+            </dxo-legend>
+            <dxo-export [enabled]="true"></dxo-export>
+        </dx-chart>
+
+    </dxi-item>
+    
+
+    <dxi-item title="LƯỢT XE" >
+        <dx-chart
+        
+            id="chart"
+       
+            [dataSource]="duLieuBieuDos"
+            >
+
+            <dxo-size
+                [height]="chartHeight"
+                >
+            </dxo-size>
+
+            <dxi-series valueField="CT1" name="Trong ngày" [color]="color1"></dxi-series>
+            <dxi-series valueField="CT2" name="Lũy kế" [color]="color2"></dxi-series>
+            <dxi-series valueField="CT3" name="Kế hoạch" [color]="color3"></dxi-series>
+            <dxi-series
+                axis="CT4"
+                type="line"
+                valueField="CT4"
+                name="% Hoàn thành"
+                [color]="color4">
+            </dxi-series>
+
+            <dxo-common-series-settings
+                argumentField="DonVi"
+                type="bar"
+                hoverMode="allArgumentPoints"
+                selectionMode="allArgumentPoints">
+                <dxo-label
+                    [visible]="true"
+                    [format]="{
+                        type: 'fixedPoint',
+                        precision: '0'
+                    }">
+                </dxo-label>
+            </dxo-common-series-settings>
+
+            <dxi-value-axis>
+                <dxo-grid [visible]="true"></dxo-grid>
+            </dxi-value-axis>
+            <dxi-value-axis
+                minValueMargin = "0"
+            
+                name="CT4"
+                position="right">
+                <dxo-grid [visible]="true"></dxo-grid>
+                <dxo-title text="Tỷ lệ hoàn thành"></dxo-title>
+            </dxi-value-axis>
+
+            <dxo-legend
+                verticalAlignment="bottom"
+                horizontalAlignment="center">
+            </dxo-legend>
+            <dxo-export [enabled]="true"></dxo-export>
+        </dx-chart>
+
+    </dxi-item>
+
+
+    <dxi-item title="Chi tiết" >
+        <dx-data-grid 
+id="gridDetail"
+[height] = "gridHeight"
+[showColumnHeaders]="true"
+[dataSource]="reportDataArr1"
+[showBorders]="true"
+[focusedRowEnabled]="false"
+[focusedRowIndex]="0"
+[columnHidingEnabled]="false"
+[columnAutoWidth]="false"
+[showColumnLines]="true"
+[showRowLines]="true"
+(onRowPrepared)="onRowPrepared($event)"
+[repaintChangesOnly]="true"
+(onCellPrepared)="onCellPrepared($event)"
+[rowAlternationEnabled]="false"
+>
+
+<dxo-paging [enabled]="false"></dxo-paging>
+<dxo-scrolling
+  mode="standard"> <!-- or "virtual" | "infinite" -->
+</dxo-scrolling>
+
+<dxo-sorting
+mode="none"> <!-- or "multiple" | "none" -->
+</dxo-sorting>
+
+
+<dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+
+<dxo-sorting
+mode="none"> <!-- or "multiple" | "none" -->
+</dxo-sorting>
+
+<dxi-column dataField="Chi_Tieu"  [width] = "200" [fixed]="true" caption= "Chỉ tiêu" headerCellTemplate="titleHeaderTemplate"> </dxi-column>
+
+
+<dxi-column dataField="Ky_nay"   [minWidth] = "rongMacDinh" caption= "Tổng khối" format="#,##0" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+<dxi-column dataField="TH01" [(visible)]="viewT"  [minWidth] = "rongMacDinh" caption= "TMD" format="#,##0" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+<dxi-column dataField="TH02" [(visible)]="viewT"  [minWidth] = "rongMacDinh" caption= "TTX" format="#,##0" headerCellTemplate="titleHeaderTemplate1"> </dxi-column>
+<dxi-column dataField="TH03" [(visible)]="viewT"  [minWidth] = "rongMacDinh" caption= "TIHD" format="#,##0" headerCellTemplate="titleHeaderTemplate2"> </dxi-column>
+<dxi-column dataField="TH04" [(visible)]="viewT" [minWidth] = "rongMacDinh" caption= "TBN" format="#,##0" headerCellTemplate="titleHeaderTemplate3"> </dxi-column>
+<dxi-column dataField="TH05" [(visible)]="viewT" [minWidth] = "rongMacDinh" caption= "TTS" format="#,##0" headerCellTemplate="titleHeaderTemplate4"> </dxi-column>
+<dxi-column dataField="TH06" [(visible)]="viewT" [minWidth] = "rongMacDinh" caption= "TPT" format="#,##0" headerCellTemplate="titleHeaderTemplate5"> </dxi-column>
+<dxi-column dataField="TCD" [(visible)]="viewT" [minWidth] = "rongMacDinh" caption= "Gara CD" format="#,##0" headerCellTemplate="titleHeaderTemplate6"> </dxi-column>
+
+
+<dxi-column dataField="TH01" [(visible)]="viewF"  [minWidth] = "rongMacDinh" caption= "TLF" format="#,##0" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+<dxi-column dataField="TH02" [(visible)]="viewF"  [minWidth] = "rongMacDinh" caption= "TXF" format="#,##0" headerCellTemplate="titleHeaderTemplate1"> </dxi-column>
+<dxi-column dataField="TH03" [(visible)]="viewF"  [minWidth] = "rongMacDinh" caption= "HNF" format="#,##0" headerCellTemplate="titleHeaderTemplate2"> </dxi-column>
+<dxi-column dataField="TH04" [(visible)]="viewF" [minWidth] = "rongMacDinh" caption= "LBF" format="#,##0" headerCellTemplate="titleHeaderTemplate3"> </dxi-column>
+<dxi-column dataField="TH05" [(visible)]="viewF" [minWidth] = "rongMacDinh" caption= "QNF" format="#,##0" headerCellTemplate="titleHeaderTemplate4"> </dxi-column>
+<dxi-column dataField="TH06" [(visible)]="viewF" [minWidth] = "rongMacDinh" caption= "BGF" format="#,##0" headerCellTemplate="titleHeaderTemplate4"> </dxi-column>
+
+<div *dxTemplate="let info of 'titleHeaderTemplate'">
+<p style="font-size:16px">{{info.column.caption}}</p>
+</div>
+
+
+<div *dxTemplate="let info of 'titleHeaderTemplate0'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+</div>
+
+<div *dxTemplate="let info of 'titleHeaderTemplate1'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+</div>
+
+<div *dxTemplate="let info of 'titleHeaderTemplate2'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+</div>
+
+<div *dxTemplate="let info of 'titleHeaderTemplate3'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+</div>
+
+<div *dxTemplate="let info of 'titleHeaderTemplate4'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+</div>
+
+<div *dxTemplate="let info of 'titleHeaderTemplate5'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+</div>
+
+<div *dxTemplate="let info of 'titleHeaderTemplate6'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+</div>
+
+<div *dxTemplate="let info of 'titleHeaderTemplate7'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+</div>
+<div *dxTemplate="let info of 'titleHeaderTemplate8'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+</div>
+<div *dxTemplate="let info of 'titleHeaderTemplate9'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+</div>
+<div *dxTemplate="let info of 'titleHeaderTemplate10'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+</div>
+
+<div *dxTemplate="let info of 'titleHeaderTemplate11'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+</div>
+<div *dxTemplate="let info of 'titleHeaderTemplate12'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+</div>
+<div *dxTemplate="let info of 'titleHeaderTemplate13'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+</div>
+<div *dxTemplate="let info of 'titleHeaderTemplate14'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+</div>
+<div *dxTemplate="let info of 'titleHeaderTemplate15'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+</div>
+
+</dx-data-grid>
+
+    </dxi-item>
+</dx-tab-panel>
+        
+
+    
+
+
+
+
+
+
+
+<dx-speed-dial-action
+    icon="filter"
+    label=""
+    [index]="1"
+    (onClick)="showFilter()">
+</dx-speed-dial-action>
+
+
+<dx-load-panel
+    #loadPanel
+    shadingColor="rgba(0,0,0,0.4)"
+    [position]="{ of: '#employee' }"
+    [(visible)]="loadIndicatorVisible"
+    [showIndicator]="true"
+    [showPane]="true"
+    [shading]="true"
+    [closeOnOutsideClick]="false"
+ >
+</dx-load-panel>

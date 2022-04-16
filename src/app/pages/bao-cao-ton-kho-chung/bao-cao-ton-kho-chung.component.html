@@ -1,0 +1,510 @@
+<div class="w3-display-container w3-deep-orange" style="height:45px;">
+  <div class="w3-display-left">
+    <h6>Tồn kho chung</h6>
+  </div>
+  <div class="w3-display-right">
+    <dx-button
+    class="button-info"
+    text="Filter"
+    (onClick)="showFilter()">
+    </dx-button>
+  </div>
+</div>
+
+
+
+
+
+<div  class="w3-hide-medium  w3-hide-small">
+
+  <dx-data-grid 
+  
+  id="gridLarge"
+  [showColumnHeaders]="true"
+  class="dx-card wide-card"
+  [dataSource]="reportDataArr1"
+  
+  keyExpr="Stt_WEB"
+  [showBorders]="true"
+  
+  [focusedRowEnabled]="false"
+  [focusedRowIndex]="0"
+  [columnHidingEnabled]="false"
+  
+  [columnAutoWidth]="true"
+    
+    [showColumnLines]="true"
+    [showRowLines]="true"
+    (onRowPrepared)="onRowPrepared($event)"
+    [repaintChangesOnly]="true"
+    (onCellPrepared)="onCellPrepared($event)"
+    [rowAlternationEnabled]="true"
+    >
+  
+    <dxo-filter-row [visible]="false"></dxo-filter-row>
+    
+    <dxo-paging [enabled]="false"></dxo-paging>
+        <dxo-scrolling
+          mode="standard"> <!-- or "virtual" | "infinite" -->
+      </dxo-scrolling>
+    
+    <dxo-sorting
+      mode="none"> <!-- or "multiple" | "none" -->
+    </dxo-sorting>
+  
+  
+  
+    <!--
+      <dxo-scrolling columnRenderingMode="virtual"></dxo-scrolling>
+      <dxo-paging [pageSize]="10"></dxo-paging>
+      <dxo-pager [showPageSizeSelector]="true" [showInfo]="true"></dxo-pager>
+    -->
+  
+  
+  <dxi-column dataField="Ma_so" [width]="100"    caption="Mã số" headerCellTemplate="addressHeaderTemplate">  </dxi-column>
+  <dxi-column caption="Xe còn ký" headerCellTemplate ="titleHeaderTemplate2">
+
+    
+
+    <dxi-column dataField="K01"  headerCellTemplate="KTitleTpl1"  [(visible)]= "arrVisible[0]">  </dxi-column>
+    <dxi-column dataField="KT01"  headerCellTemplate="KTTitleTpl1" [(visible)]= "arrVisible[0]">  </dxi-column>
+    <dxi-column dataField="K02"  headerCellTemplate="KTitleTpl2"  [(visible)]="arrVisible[1]">  </dxi-column>
+  <dxi-column dataField="KT02"  headerCellTemplate="KTTitleTpl2" [(visible)]="arrVisible[1]">  </dxi-column>
+  <dxi-column dataField="K03"  headerCellTemplate="KTitleTpl3"  [(visible)]="arrVisible[2]">  </dxi-column>
+  <dxi-column dataField="KT03"  headerCellTemplate="KTTitleTpl3" [(visible)]="arrVisible[2]">  </dxi-column>
+  <dxi-column dataField="K04"  headerCellTemplate="KTitleTpl4"  [(visible)]="arrVisible[3]">  </dxi-column>
+  <dxi-column dataField="KT04"  headerCellTemplate="KTTitleTpl4" [(visible)]="arrVisible[3]">  </dxi-column>
+  <dxi-column dataField="K05"  headerCellTemplate="KTitleTpl5"  [(visible)]="arrVisible[4]">  </dxi-column>
+  <dxi-column dataField="KT05"  headerCellTemplate="KTTitleTpl5" [(visible)]="arrVisible[4]">  </dxi-column>
+  <dxi-column dataField="K06"  headerCellTemplate="KTitleTpl6"  [(visible)]="arrVisible[5]">  </dxi-column>
+  <dxi-column dataField="KT06"  headerCellTemplate="KTTitleTpl6" [(visible)]="arrVisible[5]">  </dxi-column>
+  <dxi-column dataField="K07"  headerCellTemplate="KTitleTpl7"  [(visible)]="arrVisible[6]">  </dxi-column>
+  <dxi-column dataField="KT07"  headerCellTemplate="KTTitleTpl7" [(visible)]="arrVisible[6]">  </dxi-column>
+  <dxi-column dataField="K08"  headerCellTemplate="KTitleTpl8"  [(visible)]="arrVisible[7]">  </dxi-column>
+  <dxi-column dataField="KT08"  headerCellTemplate="KTTitleTpl8" [(visible)]="arrVisible[7]">  </dxi-column>
+  <dxi-column dataField="K09"  headerCellTemplate="KTitleTpl9"  [(visible)]="arrVisible[8]">  </dxi-column>
+  <dxi-column dataField="KT09"  headerCellTemplate="KTTitleTpl9" [(visible)]="arrVisible[8]">  </dxi-column>
+  <dxi-column dataField="K10"  headerCellTemplate="KTitleTpl10"  [(visible)]="arrVisible[9]">  </dxi-column>
+  <dxi-column dataField="KT10"  headerCellTemplate="KTTitleTpl10" [(visible)]="arrVisible[9]">  </dxi-column>
+  <dxi-column dataField="K11"  headerCellTemplate="KTitleTpl11"  [(visible)]="arrVisible[10]">  </dxi-column>
+  <dxi-column dataField="KT11"  headerCellTemplate="KTTitleTpl11" [(visible)]="arrVisible[10]">  </dxi-column>
+  <dxi-column dataField="K12"  headerCellTemplate="KTitleTpl12"  [(visible)]="arrVisible[11]">  </dxi-column>
+  <dxi-column dataField="KT12"  headerCellTemplate="KTTitleTpl12" [(visible)]="arrVisible[11]">  </dxi-column>
+  <dxi-column dataField="K13"  headerCellTemplate="KTitleTpl13"  [(visible)]="arrVisible[12]">  </dxi-column>
+  <dxi-column dataField="KT13"  headerCellTemplate="KTTitleTpl13" [(visible)]="arrVisible[12]">  </dxi-column>
+  <dxi-column dataField="K14"  headerCellTemplate="KTitleTpl14"  [(visible)]="arrVisible[13]">  </dxi-column>
+  <dxi-column dataField="KT14"  headerCellTemplate="KTTitleTpl14" [(visible)]="arrVisible[13]">  </dxi-column>
+  <dxi-column dataField="K15"  headerCellTemplate="KTitleTpl15"  [(visible)]="arrVisible[14]">  </dxi-column>
+  <dxi-column dataField="KT15"  headerCellTemplate="KTTitleTpl15" [(visible)]="arrVisible[14]">  </dxi-column>
+
+  <dxi-column  dataField="TotalK"   caption="Total"  headerCellTemplate="addressHeaderTemplate" >  </dxi-column>
+  </dxi-column>
+
+  <dxi-column caption="Tồn thực tế" headerCellTemplate ="titleHeaderTemplate2">
+    <dxi-column dataField="T01"headerCellTemplate="KTitleTpl1" [(visible)]="arrVisible[0]">  </dxi-column>
+    <dxi-column dataField="T02"headerCellTemplate="KTitleTpl2" [(visible)]="arrVisible[1]">  </dxi-column>
+    <dxi-column dataField="T03"headerCellTemplate="KTitleTpl3" [(visible)]="arrVisible[2]">  </dxi-column>
+    <dxi-column dataField="T04"headerCellTemplate="KTitleTpl4" [(visible)]="arrVisible[3]">  </dxi-column>
+    <dxi-column dataField="T05"headerCellTemplate="KTitleTpl5" [(visible)]="arrVisible[4]">  </dxi-column>
+    <dxi-column dataField="T06"headerCellTemplate="KTitleTpl6" [(visible)]="arrVisible[5]">  </dxi-column>
+    <dxi-column dataField="T07"headerCellTemplate="KTitleTpl7" [(visible)]="arrVisible[6]">  </dxi-column>
+    <dxi-column dataField="T08"headerCellTemplate="KTitleTpl8" [(visible)]="arrVisible[7]">  </dxi-column>
+    <dxi-column dataField="T09"headerCellTemplate="KTitleTpl9" [(visible)]="arrVisible[8]">  </dxi-column>
+    <dxi-column dataField="T10"headerCellTemplate="KTitleTpl10" [(visible)]="arrVisible[9]">  </dxi-column>
+    <dxi-column dataField="T11"headerCellTemplate="KTitleTpl11" [(visible)]="arrVisible[10]">  </dxi-column>
+    <dxi-column dataField="T12"headerCellTemplate="KTitleTpl12" [(visible)]="arrVisible[11]">  </dxi-column>
+    <dxi-column dataField="T13"headerCellTemplate="KTitleTpl13" [(visible)]="arrVisible[12]">  </dxi-column>
+    <dxi-column dataField="T14"headerCellTemplate="KTitleTpl14" [(visible)]="arrVisible[13]">  </dxi-column>
+    <dxi-column dataField="T15"headerCellTemplate="KTitleTpl15" [(visible)]="arrVisible[14]">  </dxi-column>
+  <dxi-column  dataField="TotalT"    caption="Total"  headerCellTemplate="addressHeaderTemplate">  </dxi-column>
+  
+  </dxi-column>
+  <dxi-column caption="Còn ký tháng N+1" headerCellTemplate ="titleHeaderTemplate2">
+  <dxi-column dataField="H01"headerCellTemplate="KTitleTpl1" [(visible)]="arrVisible[0]">  </dxi-column>
+  <dxi-column dataField="H02"headerCellTemplate="KTitleTpl2" [(visible)]="arrVisible[1]">  </dxi-column>
+  <dxi-column dataField="H03"headerCellTemplate="KTitleTpl3" [(visible)]="arrVisible[2]">  </dxi-column>
+  <dxi-column dataField="H04"headerCellTemplate="KTitleTpl4" [(visible)]="arrVisible[3]">  </dxi-column>
+  <dxi-column dataField="H05"headerCellTemplate="KTitleTpl5" [(visible)]="arrVisible[4]">  </dxi-column>
+  <dxi-column dataField="H06"headerCellTemplate="KTitleTpl6" [(visible)]="arrVisible[5]">  </dxi-column>
+  <dxi-column dataField="H07"headerCellTemplate="KTitleTpl7" [(visible)]="arrVisible[6]">  </dxi-column>
+  <dxi-column dataField="H08"headerCellTemplate="KTitleTpl8" [(visible)]="arrVisible[7]">  </dxi-column>
+  <dxi-column dataField="H09"headerCellTemplate="KTitleTpl9" [(visible)]="arrVisible[8]">  </dxi-column>
+  <dxi-column dataField="H10"headerCellTemplate="KTitleTpl10" [(visible)]="arrVisible[9]">  </dxi-column>
+  <dxi-column dataField="H11"headerCellTemplate="KTitleTpl11" [(visible)]="arrVisible[10]">  </dxi-column>
+  <dxi-column dataField="H12"headerCellTemplate="KTitleTpl12" [(visible)]="arrVisible[11]">  </dxi-column>
+  <dxi-column dataField="H13"headerCellTemplate="KTitleTpl13" [(visible)]="arrVisible[12]">  </dxi-column>
+  <dxi-column dataField="H14"headerCellTemplate="KTitleTpl14" [(visible)]="arrVisible[13]">  </dxi-column>
+  <dxi-column dataField="H15"headerCellTemplate="KTitleTpl15" [(visible)]="arrVisible[14]">  </dxi-column>
+  <dxi-column  dataField="TotalH"   caption="Total"  headerCellTemplate="addressHeaderTemplate">  </dxi-column>
+  </dxi-column>
+  
+  <dxi-column caption="Còn ký tháng N+2" headerCellTemplate ="titleHeaderTemplate2">
+    <dxi-column dataField="F01"headerCellTemplate="KTitleTpl1" [(visible)]="arrVisible[0]">  </dxi-column>
+    <dxi-column dataField="F02"headerCellTemplate="KTitleTpl2" [(visible)]="arrVisible[1]">  </dxi-column>
+    <dxi-column dataField="F03"headerCellTemplate="KTitleTpl3" [(visible)]="arrVisible[2]">  </dxi-column>
+    <dxi-column dataField="F04"headerCellTemplate="KTitleTpl4" [(visible)]="arrVisible[3]">  </dxi-column>
+    <dxi-column dataField="F05"headerCellTemplate="KTitleTpl5" [(visible)]="arrVisible[4]">  </dxi-column>
+    <dxi-column dataField="F06"headerCellTemplate="KTitleTpl6" [(visible)]="arrVisible[5]">  </dxi-column>
+    <dxi-column dataField="F07"headerCellTemplate="KTitleTpl7" [(visible)]="arrVisible[6]">  </dxi-column>
+    <dxi-column dataField="F08"headerCellTemplate="KTitleTpl8" [(visible)]="arrVisible[7]">  </dxi-column>
+    <dxi-column dataField="F09"headerCellTemplate="KTitleTpl9" [(visible)]="arrVisible[8]">  </dxi-column>
+    <dxi-column dataField="F10"headerCellTemplate="KTitleTpl10" [(visible)]="arrVisible[9]">  </dxi-column>
+    <dxi-column dataField="F11"headerCellTemplate="KTitleTpl11" [(visible)]="arrVisible[10]">  </dxi-column>
+    <dxi-column dataField="F12"headerCellTemplate="KTitleTpl12" [(visible)]="arrVisible[11]">  </dxi-column>
+    <dxi-column dataField="F13"headerCellTemplate="KTitleTpl13" [(visible)]="arrVisible[12]">  </dxi-column>
+    <dxi-column dataField="F14"headerCellTemplate="KTitleTpl14" [(visible)]="arrVisible[13]">  </dxi-column>
+    <dxi-column dataField="F15"headerCellTemplate="KTitleTpl15" [(visible)]="arrVisible[14]">  </dxi-column>
+    <dxi-column  dataField="TotalF"  caption="Total"  headerCellTemplate="addressHeaderTemplate">  </dxi-column>
+  
+  </dxi-column>
+  
+  <div *dxTemplate="let info of 'titleHeaderTemplate'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+  </div>
+
+<!-- Header KT -------------------------------------------------------------------->
+<div style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'KTitleTpl1'">
+  {{KarrHeader[0]}}
+</div>
+<div style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'KTitleTpl2'">
+  {{KarrHeader[1]}}
+</div>
+<div style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'KTitleTpl3'">
+  {{KarrHeader[2]}}
+</div>
+<div style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'KTitleTpl4'">
+  {{KarrHeader[3]}}
+</div>
+<div style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'KTitleTpl5'">
+  {{KarrHeader[4]}}
+</div>
+<div style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'KTitleTpl6'">
+  {{KarrHeader[5]}}
+</div>
+<div style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'KTitleTpl7'">
+  {{KarrHeader[6]}}
+</div>
+<div style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'KTitleTpl8'">
+  {{KarrHeader[7]}}
+</div>
+<div style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'KTitleTpl9'">
+  {{KarrHeader[8]}}
+</div>
+<div style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'KTitleTpl10'">
+  {{KarrHeader[9]}}
+</div>
+<div style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'KTitleTpl11'">
+  {{KarrHeader[10]}}
+</div>
+<div style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'KTitleTpl12'">
+  {{KarrHeader[11]}}
+</div>
+<div style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'KTitleTpl13'">
+  {{KarrHeader[12]}}
+</div>
+<div style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'KTitleTpl14'">
+  {{KarrHeader[13]}}
+</div>
+<div style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'KTitleTpl15'">
+  {{KarrHeader[14]}}
+</div>
+
+
+<!-- Header KT -------------------------------------------------------------------->
+<div style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'KTTitleTpl1'">{{KTarrHeader[0]}}</div>
+<div style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'KTTitleTpl2'">{{KTarrHeader[1]}}</div>
+<div style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'KTTitleTpl3'">{{KTarrHeader[2]}}</div>
+<div style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'KTTitleTpl4'">{{KTarrHeader[3]}}</div>
+<div style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'KTTitleTpl5'">{{KTarrHeader[4]}}</div>
+<div style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'KTTitleTpl6'">{{KTarrHeader[5]}}</div>
+<div style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'KTTitleTpl7'">{{KTarrHeader[6]}}</div>
+<div style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'KTTitleTpl8'">{{KTarrHeader[7]}}</div>
+<div style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'KTTitleTpl9'">{{KTarrHeader[8]}}</div>
+<div style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'KTTitleTpl10'">{{KTarrHeader[9]}}</div>
+<div style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'KTTitleTpl11'">{{KTarrHeader[10]}}</div>
+<div style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'KTTitleTpl12'">{{KTarrHeader[11]}}</div>
+<div style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'KTTitleTpl13'">{{KTarrHeader[12]}}</div>
+<div style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'KTTitleTpl14'">{{KTarrHeader[13]}}</div>
+<div style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'KTTitleTpl15'">{{KTarrHeader[14]}}</div>
+
+
+
+
+<div style="font-size:16px;  text-align: center; white-space: normal; color: red;" *dxTemplate="let info of 'titleHeaderTemplate2'">
+  {{info.column.caption}}
+</div>
+<div style="font-size:12px; text-align: center; white-space: normal;" *dxTemplate="let info of 'titleHeaderTemplate3'">
+  {{info.column.caption}}
+</div>
+  
+
+  <div  style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'addressHeaderTemplate'">
+    {{info.column.caption}}
+  </div>
+  
+  
+  
+  
+  </dx-data-grid>
+  </div>
+
+
+  
+
+  
+<div  class="w3-hide-large">
+
+
+  <div [style.visibility]="totalView" >
+  <dx-data-grid 
+    id="gridSmall"
+    [showColumnHeaders]="true"
+    class="dx-card wide-card"
+    [dataSource]="reportDataArr1"
+    keyExpr="Stt_WEB"
+    [showBorders]="true"
+    [focusedRowEnabled]="false"
+    [focusedRowIndex]="0"
+    [columnHidingEnabled]="false"
+    [columnAutoWidth]="true"
+    [showColumnLines]="true"
+    [showRowLines]="true"
+    (onRowPrepared)="onRowPrepared($event)"
+    [repaintChangesOnly]="true"
+    [rowAlternationEnabled]="true"
+  >
+    <dxo-filter-row [visible]="false"></dxo-filter-row>
+    <dxo-paging [enabled]="false"></dxo-paging>
+    <dxo-scrolling
+          mode="standard"> <!-- or "virtual" | "infinite" -->
+    </dxo-scrolling>
+    <dxo-sorting
+      mode="none"> <!-- or "multiple" | "none" -->
+    </dxo-sorting>
+
+  <dxi-column dataField="Ma_so"     [width]="80"    caption="Mã số" headerCellTemplate="addressHeaderTemplate">  </dxi-column>
+  <dxi-column  dataField="TotalK"    caption="Ký"  headerCellTemplate="addressHeaderTemplate" >  </dxi-column>
+  <dxi-column  dataField="TotalKT"    caption="KT"  headerCellTemplate="addressHeaderTemplate" >  </dxi-column>
+  <dxi-column  dataField="TotalT"    caption="Tồn"  headerCellTemplate="addressHeaderTemplate">  </dxi-column>
+  <dxi-column  dataField="TotalH"    caption="N+1"  headerCellTemplate="addressHeaderTemplate">  </dxi-column>
+  <dxi-column  dataField="TotalF"    caption="N+2"  headerCellTemplate="addressHeaderTemplate">  </dxi-column>
+
+  <dxi-column type="buttons" [width]="45">
+
+    <dxi-button template="myCommand" >
+        <div *dxTemplate="let data of 'myCommand'">
+          <dx-button
+          [width]="45"
+
+          class="button-info"
+          icon="arrowright" 
+          (onClick)="showInfo1(data)">
+          </dx-button>
+        </div>
+    </dxi-button>
+
+ 
+
+
+
+  </dxi-column>
+
+
+  <div *dxTemplate="let info of 'titleHeaderTemplate'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+  </div>
+  
+  <div  style="color:Tomato;font-size:50px;  text-align: left; white-space: normal;" *dxTemplate="let info of 'titleHeaderTemplate2'">
+    {{info.column.caption}}
+  </div>
+  
+  <div style="font-size:12px; text-align: center; white-space: normal;" *dxTemplate="let info of 'titleHeaderTemplate3'">
+    {{info.column.caption}}
+  </div>
+  
+  <!--
+    <div *dxTemplate="let info of 'addressHeaderTemplate'">
+      <p style="color: rgb(0, 0, 0); white-space : normal;font-size:13px;">{{info.column.caption}}</p>
+    </div>
+  -->
+  
+  <div  style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'addressHeaderTemplate'">
+    {{info.column.caption}}
+  </div>
+  
+  
+  
+  
+  </dx-data-grid>
+  </div>
+
+
+</div>
+
+<div class="w3-display-middle w3-panel w3-border w3-border-red" [style.visibility]="detailView">
+
+
+  <!--
+      <div  style="position: absolute;left: 1px;top: 50px;  z-index: 0;">
+  -->
+     
+    </div>
+
+
+
+
+
+
+
+<dx-popup
+    maxWidth = "600"
+    [showTitle]="true"
+    title="Filter"
+    [dragEnabled]="false"
+    [closeOnOutsideClick]="false"
+    [(visible)]="popupVisible">
+
+
+    <div class="dx-fieldset">
+      <div class="dx-field">
+          <div class="dx-field-label">Date</div>
+          <div class="dx-field-value">
+              <dx-date-box
+                  [value]="ngayVal"
+                  type="date">
+              </dx-date-box>
+          </div>
+      </div>
+
+      <div class="dx-field">
+          <div class="dx-field-label">Default mode</div>
+          <div class="dx-field-value">
+              <dx-select-box 
+              [dataSource]="donViCoSos"
+              displayExpr="ten_nh"
+              valueExpr="ma_nh"
+              [(value)] = "khoiVal"
+                >
+
+              </dx-select-box>
+          </div>
+      </div>
+
+      <div class="dx-field">
+        <div class="dx-field-label">Default mode</div>
+        <div class="dx-field-value">
+            <dx-select-box 
+            [dataSource]="capCbxd"
+            displayExpr="Ten"
+            valueExpr="Ma"
+            [(value)] = "capVal"
+            >
+            </dx-select-box>
+        </div>
+    </div>
+
+    </div>
+    <div style="position: absolute;right: 50px;bottom: 10px; ">
+      <dx-button
+      class="button-info"
+      with = "200"
+      text="   Ok  "
+      (onClick)="fillData()">
+      </dx-button>
+    </div>
+
+    <div style="position: absolute;right: 150px;bottom: 10px;  ">
+      <dx-button
+      class="button-info"
+      text="Cancel"
+      (onClick)="close()">
+      </dx-button>
+    </div>
+</dx-popup>
+
+
+<dx-popup
+    [(width)]="popupWidth"
+    [(height)]="popupHeight"
+
+    
+    [showTitle]="true"
+    title="Chi tiết"
+    [dragEnabled]="false"
+    [closeOnOutsideClick]="false"
+    [(visible)]="popupDetailVisible">
+
+    <div >
+  
+      <h4 style="color: rgb(241, 82, 9);">{{ modelViewDetail }}</h4>
+
+      <dx-data-grid 
+        id="gridDetail"
+        [showColumnHeaders]="true"
+        [dataSource]="reportDataDetail"
+        [showBorders]="true"
+        [focusedRowEnabled]="false"
+        [focusedRowIndex]="0"
+        [columnHidingEnabled]="false"
+        [columnAutoWidth]="true"
+        [showColumnLines]="true"
+        [showRowLines]="true"
+        (onRowPrepared)="onRowPrepared($event)"
+        [repaintChangesOnly]="true"
+        (onCellPrepared)="onCellPrepared($event)"
+        [rowAlternationEnabled]="true"
+      >
+  
+      <dxi-column dataField="Col1" caption="ĐV"   headerCellTemplate="addressHeaderTemplate"> </dxi-column>
+      <dxi-column dataField="Col2" caption="Ký"  headerCellTemplate="addressHeaderTemplate"> </dxi-column>
+      <dxi-column dataField="Col3" caption="KT"  headerCellTemplate="addressHeaderTemplate"> </dxi-column>
+      <dxi-column dataField="Col4" caption="Tồn"  headerCellTemplate="addressHeaderTemplate"> </dxi-column>
+      <dxi-column dataField="Col5" caption="N+1"  headerCellTemplate="addressHeaderTemplate"> </dxi-column>
+      <dxi-column dataField="Col6" caption="N+2"  headerCellTemplate="addressHeaderTemplate"> </dxi-column>
+    
+      <div *dxTemplate="let info of 'titleHeaderTemplate'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+      </div>
+      
+      <div style="font-size:16px;  text-align: center; white-space: normal;" *dxTemplate="let info of 'titleHeaderTemplate2'">
+        {{info.column.caption}}
+      </div>
+      
+      <div style="font-size:12px; text-align: center; white-space: normal;" *dxTemplate="let info of 'titleHeaderTemplate3'">
+        {{info.column.caption}}
+      </div>
+      
+      
+      <div  style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'addressHeaderTemplate'">
+        {{info.column.caption}}
+      </div>
+     
+      </dx-data-grid>
+    
+    </div>
+<!--
+    <div class="w3-display-topmiddle" style="position: absolute;right: 10px;bottom: 10px;  ">
+-->
+    <div  style="position: absolute;right: 10px;bottom: 10px;  ">
+      <dx-button
+        class="button-info"
+        icon="arrowleft"
+        (onClick)="closeDetail()">
+      </dx-button>
+    </div>
+    
+</dx-popup>
+
+
+<dx-load-panel
+    #loadPanel
+    shadingColor="rgba(0,0,0,0.4)"
+    [position]="{ of: '#smallDiv' }"
+    [(visible)]="loadingVisible"
+    [showIndicator]="true"
+    [showPane]="true"
+    [shading]="true"
+    [closeOnOutsideClick]="false"
+    >
+</dx-load-panel>
+

@@ -1,0 +1,145 @@
+<dx-popup maxWidth="600" [showTitle]="false" title="Filter" [dragEnabled]="false" [closeOnOutsideClick]="false"
+    [(visible)]="popupVisible">
+
+    <div class="dx-fieldset">
+
+
+
+        <div class="dx-field">
+            <div class="dx-field-label">Từ ngay</div>
+            <div class="dx-field-value">
+                <dx-date-box [(value)]="tuNgayVal" type="date">
+                </dx-date-box>
+            </div>
+        </div>
+
+
+        <div class="dx-field">
+            <div class="dx-field-label">Đến ngày</div>
+            <div class="dx-field-value">
+                <dx-date-box [(value)]="denNgayVal" type="date">
+                </dx-date-box>
+            </div>
+        </div>
+
+        <div class="dx-field">
+            <div class="dx-field-label">Khối</div>
+            <div class="dx-field-value">
+                <dx-select-box [dataSource]="donViCoSos" displayExpr="ten_nh" valueExpr="ma_nh" [(value)]="khoiVal">
+
+                </dx-select-box>
+            </div>
+        </div>
+
+        <div class="dx-field">
+            <div class="dx-field-label">Đơn vị</div>
+            <div class="dx-field-value">
+                <dx-select-box [dataSource]="donviList" displayExpr="Ten_dvcs" valueExpr="Ma_dvcs" [(value)]="donviVal">
+
+                </dx-select-box>
+            </div>
+        </div>
+
+        <div class="dx-field">
+            <div class="dx-field-label">Cấp</div>
+            <div class="dx-field-value">
+                <dx-select-box [dataSource]="capCbxd" displayExpr="Ten" valueExpr="Ma" [(value)]="capVal">
+                </dx-select-box>
+            </div>
+        </div>
+
+    </div>
+    <div style="position: absolute;right: 50px;bottom: 10px; ">
+        <dx-button class="button-info" with="200" text="   Ok  " (onClick)="fillData()">
+        </dx-button>
+    </div>
+
+    <div style="position: absolute;right: 150px;bottom: 10px;  ">
+        <dx-button class="button-info" text="Cancel" (onClick)="close()">
+        </dx-button>
+    </div>
+</dx-popup>
+
+
+<div class="long-title">
+    <p>BÁO CÁO TREND DỊCH VỤ - Từ tháng {{this.thang1}}/{{this.nam1}} đến tháng {{this.thang2}}/{{this.nam2}}</p>
+</div>
+
+
+<dx-data-grid id="gridDetail" [height]="gridHeight" [showColumnHeaders]="true" [dataSource]="reportDataArr1"
+    [showBorders]="true" [focusedRowEnabled]="false" [focusedRowIndex]="0" [columnHidingEnabled]="false"
+    [columnAutoWidth]="false" [showColumnLines]="true" [showRowLines]="true" [columnAutoWidth]="true"
+    (onRowPrepared)="onRowPrepared($event)" [repaintChangesOnly]="true" (onCellPrepared)="onCellPrepared($event)"
+    [rowAlternationEnabled]="false">
+
+    <dxo-paging [enabled]="false"></dxo-paging>
+    <dxo-scrolling mode="standard">
+        <!-- or "virtual" | "infinite" -->
+    </dxo-scrolling>
+
+    <dxo-sorting mode="none">
+        <!-- or "multiple" | "none" -->
+    </dxo-sorting>
+
+
+    <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+
+    <dxo-sorting mode="none">
+        <!-- or "multiple" | "none" -->
+    </dxo-sorting>
+
+    <dxi-column dataField="ma_so"  caption= "Mã số"  headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="stt"  caption= "Stt"  headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="chi_tieu"  caption= "Chỉ tiêu" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="Col1" [(visible)]="ckcol1"  caption= {{tcol1}} format="#,##0.#" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="Col2" [(visible)]="ckcol2" caption= {{tcol2}} format="#,##0.#" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="Col3" [(visible)]="ckcol3" caption= {{tcol3}} format="#,##0.#" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="Col4" [(visible)]="ckcol4" caption= {{tcol4}} format="#,##0.#" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="Col5" [(visible)]="ckcol5" caption= {{tcol5}} format="#,##0.#" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="Col6" [(visible)]="ckcol6" caption= {{tcol6}} format="#,##0.#" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="Col7" [(visible)]="ckcol7" caption= {{tcol7}} format="#,##0.#" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="Col8" [(visible)]="ckcol8" caption= {{tcol8}} format="#,##0.#" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="Col9" [(visible)]="ckcol9" caption= {{tcol9}} format="#,##0.#" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="Col10" [(visible)]="ckcol10" caption= {{tcol10}} format="#,##0.#" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="Col11" [(visible)]="ckcol11" caption= {{tcol11}} format="#,##0.#" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="Col12" [(visible)]="ckcol12" caption= {{tcol12}} format="#,##0.#" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="Col13" [(visible)]="ckcol13" caption= {{tcol13}} format="#,##0.#" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="Col14" [(visible)]="ckcol14" caption= {{tcol14}} format="#,##0.#" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="Col15" [(visible)]="ckcol15" caption= {{tcol15}} format="#,##0.#" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="Col16" [(visible)]="ckcol16" caption= {{tcol16}} format="#,##0.#" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="Col17" [(visible)]="ckcol17" caption= {{tcol17}} format="#,##0.#" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="Col18" [(visible)]="ckcol18" caption= {{tcol18}} format="#,##0.#" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="Col19" [(visible)]="ckcol19" caption= {{tcol19}} format="#,##0.#" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="Col20" [(visible)]="ckcol20" caption= {{tcol20}} format="#,##0.#" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="Col21" [(visible)]="ckcol21" caption= {{tcol21}} format="#,##0.#" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="Col22" [(visible)]="ckcol22" caption= {{tcol22}} format="#,##0.#" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="Col23" [(visible)]="ckcol23" caption= {{tcol23}} format="#,##0.#" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="Col24" [(visible)]="ckcol24" caption= {{tcol24}} format="#,##0.#" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="Col25" [(visible)]="ckcol25" caption= {{tcol25}} format="#,##0.#" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="Col26" [(visible)]="ckcol26" caption= {{tcol26}} format="#,##0.#" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="Col27" [(visible)]="ckcol27" caption= {{tcol27}} format="#,##0.#" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="Col28" [(visible)]="ckcol28" caption= {{tcol28}} format="#,##0.#" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="Col29" [(visible)]="ckcol29" caption= {{tcol29}} format="#,##0.#" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column dataField="Col30" [(visible)]="ckcol30" caption= {{tcol30}} format="#,##0.#" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+
+  
+
+    <div *dxTemplate="let info of 'titleHeaderTemplate0'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+
+
+    <dxo-export [enabled]="true" [allowExportSelectedData]="true"></dxo-export>
+    
+</dx-data-grid>
+
+
+
+
+
+
+
+
+
+<dx-speed-dial-action icon="filter" label="" [index]="1" (onClick)="showFilter()">
+</dx-speed-dial-action>

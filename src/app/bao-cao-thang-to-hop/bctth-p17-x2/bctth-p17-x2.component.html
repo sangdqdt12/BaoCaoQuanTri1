@@ -1,0 +1,66 @@
+<div class="ExDiv">
+    <dx-chart id="dv01-db01" title="17. DT Công + PT + Sơn" [dataSource]="dataSource"
+        resolveLabelOverlapping="stack">
+
+        <dxo-size [height]="height" [width]="width">
+        </dxo-size>
+
+        <dxi-series valueField="pt_dt_cong_17" name="% DT Công" [color]="color1">
+            <dxo-label position="inside" backgroundColor="tran" opacity="0" [visible]="true" [format]="{
+                type: 'fixedPoint',
+                precision: '0'
+            }">
+                <dxo-font [color]='colorF1'>
+                </dxo-font>
+            </dxo-label>
+        </dxi-series>
+        <dxi-series valueField="pt_lng_pt_17" name="% LNG Phụ tùng" [color]="color2">
+
+            <dxo-label position="inside" backgroundColor="tran" opacity="0" [visible]="true" [format]="{
+                type: 'fixedPoint',
+                precision: '0'
+            }">
+                <dxo-font [color]='colorF2'>
+
+                </dxo-font>
+
+            </dxo-label>
+
+        </dxi-series>
+
+
+        <dxi-series valueField="pt_hao_phi_son_17" name="% HP Sơn" [color]="color3">
+
+            <dxo-label position="inside" backgroundColor="tran" opacity="0" [visible]="true" [format]="{
+                    type: 'fixedPoint',
+                    precision: '0'
+                }">
+                <dxo-font [color]='colorF3'>
+
+                </dxo-font>
+
+            </dxo-label>
+
+        </dxi-series>
+
+
+        <dxo-common-series-settings argumentField="Ten_Dvcs" type="bar" hoverMode="allArgumentPoints"
+            selectionMode="allArgumentPoints">
+            <dxo-label position="inside" backgroundColor="tran" opacity="0" [visible]="true" [format]="{
+                type: 'fixedPoint',
+                precision: '0'}">
+                <dxo-font [color]='colorF3'>
+
+                </dxo-font>
+
+            </dxo-label>
+        </dxo-common-series-settings>
+
+
+
+
+        <dxo-legend verticalAlignment="bottom" horizontalAlignment="center">
+        </dxo-legend>
+        <dxo-export [enabled]="true"></dxo-export>
+    </dx-chart>
+</div>

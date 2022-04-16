@@ -1,0 +1,33 @@
+::ng-deep #gridDetail .dx-datagrid .dx-row > td {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-size: 15px;
+    line-height: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
+  }
+  
+  
+  ::ng-deep #gridDetail .dx-datagrid-headers {
+    color: rgba(17, 1, 241, 0.972);
+    touch-action: pinch-zoom;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: center;
+  }
+
+  th, td {
+    padding: 15px;
+  }
+
+  
+  .long-title{
+    color:black;
+    font-weight: bold;
+    margin: 0;
+    padding: -5px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }

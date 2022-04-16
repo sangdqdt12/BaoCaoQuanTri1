@@ -1,0 +1,74 @@
+<div class="ExDiv">
+    <dx-chart id="dv01-db01" title="23. LNG Dịch vụ - Môi giới" [dataSource]="dataSource"
+        resolveLabelOverlapping="stack">
+
+        <dxo-size [height]="height" [width]="width">
+        </dxo-size>
+
+        <dxi-series valueField="lng_dvmoigioi_kehoach_23" name="Môi giới KH" [color]="color1">
+            <dxo-label position="inside" backgroundColor="tran" opacity="0" [visible]="true" [format]="{
+                type: 'fixedPoint',
+                precision: '0'
+            }">
+                <dxo-font [color]='colorF1'>
+                </dxo-font>
+            </dxo-label>
+        </dxi-series>
+        <dxi-series valueField="lng_dvmoigioi_thuchien_23" name="Môi giới thực hiện" [color]="color2">
+
+            <dxo-label position="inside" backgroundColor="tran" opacity="0" [visible]="true" [format]="{
+                type: 'fixedPoint',
+                precision: '0'
+            }">
+                <dxo-font [color]='colorF2'>
+
+                </dxo-font>
+
+            </dxo-label>
+
+        </dxi-series>
+
+
+        <dxi-series axis ="CT3" type ="line" valueField="ty_le_23" name="% Tỷ lệ" [color]="color3">
+
+            <dxo-label position="inside" backgroundColor="tran" opacity="0" [visible]="true" [format]="{
+                    type: 'fixedPoint',
+                    precision: '0'
+                }">
+                <dxo-font [color]='colorF3'>
+
+                </dxo-font>
+
+            </dxo-label>
+
+        </dxi-series>
+
+
+        <dxo-common-series-settings argumentField="Ten_Dvcs" type="bar" hoverMode="allArgumentPoints"
+            selectionMode="allArgumentPoints">
+            <dxo-label position="inside" backgroundColor="tran" opacity="0" [visible]="true" [format]="{
+                type: 'fixedPoint',
+                precision: '0'}">
+                <dxo-font [color]='colorF3'>
+
+                </dxo-font>
+
+            </dxo-label>
+        </dxo-common-series-settings>
+
+        <dxi-value-axis [visible]="true">
+            <dxo-break-style line="waved">
+            </dxo-break-style>
+            <dxo-grid [visible]="true"></dxo-grid>
+        </dxi-value-axis>
+        <dxi-value-axis name="CT3" position="right" minValueMargin="0" maxValueMargin="0">
+            <dxo-grid [visible]="true"></dxo-grid>
+            <dxo-title text="% HTKH"></dxo-title>
+        </dxi-value-axis>
+
+
+        <dxo-legend verticalAlignment="bottom" horizontalAlignment="center">
+        </dxo-legend>
+        <dxo-export [enabled]="true"></dxo-export>
+    </dx-chart>
+</div>

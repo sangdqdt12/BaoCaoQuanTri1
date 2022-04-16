@@ -1,0 +1,24 @@
+<div class="ExBoder">
+    <dx-box direction="col" width="100%" [height]="height">
+       
+            <dxi-item class="rect demo-light" [ratio]="1">
+                <h6>LƯỢT XE GARA</h6>
+            </dxi-item>
+        
+            <dxi-item class="rect demo-light" [ratio]="1">
+                <h6>{{dataSource.luot_xe_22| number}}</h6>
+            </dxi-item>
+       
+            <dxi-item class="rect demo-light" [ratio]="1">
+                <p>TỔNG DTDV: {{dataSource.dtdv_thuc_hien_22| number}}</p>
+            </dxi-item>
+
+            <dxi-item class="rect demo-light" [ratio]="1">
+                <p>Khế hoạch: {{dataSource.dtdv_ke_hoach_22| number}}</p>
+            </dxi-item>
+       
+           
+       
+    </dx-box>
+
+</div>

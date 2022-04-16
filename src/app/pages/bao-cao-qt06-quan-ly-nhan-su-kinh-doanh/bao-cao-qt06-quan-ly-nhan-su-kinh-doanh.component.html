@@ -1,0 +1,309 @@
+<dx-popup maxWidth="600" [showTitle]="false" title="Filter" [dragEnabled]="false" [closeOnOutsideClick]="false"
+    [(visible)]="popupVisible">
+
+    <div class="dx-fieldset">
+
+
+
+        <div class="dx-field">
+            <div class="dx-field-label">Từ ngay</div>
+            <div class="dx-field-value">
+                <dx-date-box [(value)]="tuNgayVal" type="date">
+                </dx-date-box>
+            </div>
+        </div>
+
+
+        <div class="dx-field">
+            <div class="dx-field-label">Đến ngày</div>
+            <div class="dx-field-value">
+                <dx-date-box [(value)]="denNgayVal" type="date">
+                </dx-date-box>
+            </div>
+        </div>
+
+        <div class="dx-field">
+            <div class="dx-field-label">Khối</div>
+            <div class="dx-field-value">
+                <dx-select-box [dataSource]="donViCoSos" displayExpr="ten_nh" valueExpr="ma_nh" [(value)]="khoiVal">
+
+                </dx-select-box>
+            </div>
+        </div>
+
+        <div class="dx-field">
+            <div class="dx-field-label">Đơn vị</div>
+            <div class="dx-field-value">
+                <dx-select-box [dataSource]="donviList" displayExpr="Ten_dvcs" valueExpr="Ma_dvcs" [(value)]="donviVal" [showClearButton]="true">
+
+                </dx-select-box>
+            </div>
+        </div>
+
+        <div class="dx-field">
+            <div class="dx-field-label">Cấp</div>
+            <div class="dx-field-value">
+                <dx-select-box [dataSource]="capCbxd" displayExpr="Ten" valueExpr="Ma" [(value)]="capVal">
+                </dx-select-box>
+            </div>
+        </div>
+
+    </div>
+    <div style="position: absolute;right: 50px;bottom: 10px; ">
+        <dx-button class="button-info" with="200" text="   Ok  " (onClick)="fillData()">
+        </dx-button>
+    </div>
+
+    <div style="position: absolute;right: 150px;bottom: 10px;  ">
+        <dx-button class="button-info" text="Cancel" (onClick)="close()">
+        </dx-button>
+    </div>
+</dx-popup>
+
+
+<div class="long-title">
+    <p>BÁO CÁO NHÂN SỰ KINH DOANH - Từ ngày {{this.tuNgayVal|date: 'dd-MM-yyyy'}} đến ngày {{this.denNgayVal|date: 'dd-MM-yyyy'}}</p>
+</div>
+
+
+<dx-data-grid id="gridDetail" [height]="gridHeight" [showColumnHeaders]="true" [dataSource]="reportDataArr1"
+    [showBorders]="true" [focusedRowEnabled]="false" [focusedRowIndex]="0" [columnHidingEnabled]="false"
+    [columnAutoWidth]="false" [showColumnLines]="true" [showRowLines]="true" [columnAutoWidth]="true"
+    (onRowPrepared)="onRowPrepared($event)" [repaintChangesOnly]="true" (onCellPrepared)="onCellPrepared($event)"
+    [rowAlternationEnabled]="false">
+
+    <dxo-paging [enabled]="false"></dxo-paging>
+    <dxo-scrolling mode="standard">
+        <!-- or "virtual" | "infinite" -->
+    </dxo-scrolling>
+
+    <dxo-sorting mode="none">
+        <!-- or "multiple" | "none" -->
+    </dxo-sorting>
+
+
+    <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+
+    <dxo-sorting mode="none">
+        <!-- or "multiple" | "none" -->
+    </dxo-sorting>
+
+    <dxi-column dataField="Ten_Hs" [width]="200" [fixed]="true" caption="Họ tên"
+        headerCellTemplate="titleHeaderTemplate"> </dxi-column>
+    <dxi-column dataField="Ma_bp" [minWidth]="rongMacDinh" [fixed]="true" caption="Phòng"
+        headerCellTemplate="titleHeaderTemplate29"> </dxi-column>
+    <dxi-column dataField="Ma_dvcs" [minWidth]="rongMacDinh" [fixed]="true" caption="ĐV"
+        headerCellTemplate="titleHeaderTemplate30"> </dxi-column>
+    <dxi-column caption="DOANH SỐ THEO NHÂN VIÊN" alignment="center">
+        <dxi-column dataField="SL_Giao" [minWidth]="rongMacDinh" caption="Giao" format="#,##0"
+            headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+        <dxi-column dataField="SL_ChoGiao" [minWidth]="rongMacDinh" caption="Chờ giao" format="#,##0"
+            headerCellTemplate="titleHeaderTemplate1"> </dxi-column>
+        <dxi-column dataField="So_ky" [minWidth]="rongMacDinh" caption="TH" format="#,##0"
+            headerCellTemplate="titleHeaderTemplate2"> </dxi-column>
+        <dxi-column dataField="SL_KH_Xe" [minWidth]="rongMacDinh" caption="KH" format="#,##0"
+            headerCellTemplate="titleHeaderTemplate3"> </dxi-column>
+        <dxi-column dataField="TyLe_Xe" [minWidth]="rongMacDinh" caption="%KH" format="#,##0"
+            headerCellTemplate="titleHeaderTemplate4">
+            <dxo-format type="percent"></dxo-format>
+        </dxi-column>
+    </dxi-column>
+    <dxi-column caption="KHÁCH HÀNG TIỀM NĂNG" alignment="center">
+        <dxi-column dataField="Hot" [minWidth]="rongMacDinh" caption="Hot" format="#,##0"
+            headerCellTemplate="titleHeaderTemplate5"> </dxi-column>
+        <dxi-column dataField="Warm" [minWidth]="rongMacDinh" caption="Warm" format="#,##0"
+            headerCellTemplate="titleHeaderTemplate6"> </dxi-column>
+        <dxi-column dataField="Cold" [minWidth]="rongMacDinh" caption="Cold" format="#,##0"
+            headerCellTemplate="titleHeaderTemplate7"> </dxi-column>
+        <dxi-column dataField="SL_TH_KHTN" [minWidth]="rongMacDinh" caption="TH" format="#,##0"
+            headerCellTemplate="titleHeaderTemplate8"> </dxi-column>
+        <dxi-column dataField="SL_KH_KHTN" [minWidth]="rongMacDinh" caption="KH" format="#,##0"
+            headerCellTemplate="titleHeaderTemplate9"> </dxi-column>
+        <dxi-column dataField="TyLe_KHTN" [minWidth]="rongMacDinh" caption="%KH" format="#,##0"
+            headerCellTemplate="titleHeaderTemplate11">
+            <dxo-format type="percent"></dxo-format>
+        </dxi-column>
+        <dxi-column dataField="Ky_HD" [minWidth]="rongMacDinh" caption="Ký HĐ" format="#,##0"
+            headerCellTemplate="titleHeaderTemplate12"> </dxi-column>
+        <dxi-column dataField="TyLe_Ky_HD" [minWidth]="rongMacDinh" caption="%C.Đổi" format="#,##0"
+            headerCellTemplate="titleHeaderTemplate13"> 
+            <dxo-format type="percent"></dxo-format>
+        </dxi-column>
+        <dxi-column dataField="Phai_CS" [minWidth]="rongMacDinh" caption="Phải CS" format="#,##0"
+            headerCellTemplate="titleHeaderTemplate14"> </dxi-column>
+        <dxi-column dataField="Da_CS" [minWidth]="rongMacDinh" caption="Đã CS" format="#,##0"
+            headerCellTemplate="titleHeaderTemplate15"> </dxi-column>
+        <dxi-column dataField="TyLe_CS" [minWidth]="rongMacDinh" caption="%CS" format="#,##0"
+            headerCellTemplate="titleHeaderTemplate16"> 
+            <dxo-format type="percent"></dxo-format>
+        </dxi-column>
+    </dxi-column>
+
+    <dxi-column caption="NỘI THẤT" alignment="center">
+        <dxi-column dataField="KH_NT" [minWidth]="rongMacDinh" caption="KH NT" format="#,##0"
+            headerCellTemplate="titleHeaderTemplate17"> </dxi-column>
+        <dxi-column dataField="DT_PK" [minWidth]="rongMacDinh" caption="TH NT" format="#,##0"
+            headerCellTemplate="titleHeaderTemplate18"> </dxi-column>
+        <dxi-column dataField="TyLe_NT" [minWidth]="rongMacDinh" caption="%NT" format="#,##0"
+            headerCellTemplate="titleHeaderTemplate19"> 
+            <dxo-format type="percent"></dxo-format>
+        </dxi-column>
+    </dxi-column>
+
+    <dxi-column caption="BẢO HIỂM" alignment="center">
+        <dxi-column dataField="KH_BH" [minWidth]="rongMacDinh" caption="KH BH" format="#,##0"
+            headerCellTemplate="titleHeaderTemplate20"> </dxi-column>
+        <dxi-column dataField="DT_BH" [minWidth]="rongMacDinh" caption="TH BH" format="#,##0"
+            headerCellTemplate="titleHeaderTemplate21"> </dxi-column>
+        <dxi-column dataField="TyLe_BH" [minWidth]="rongMacDinh" caption="%BH" format="#,##0"
+            headerCellTemplate="titleHeaderTemplate22"> 
+            <dxo-format type="percent"></dxo-format>
+        </dxi-column>
+    </dxi-column>
+
+    <dxi-column caption="CR1K" alignment="center">
+        <dxi-column dataField="KH_CR1K" [minWidth]="rongMacDinh" caption="KH CR1K" format="#,##0"
+            headerCellTemplate="titleHeaderTemplate23"> </dxi-column>
+        <dxi-column dataField="TH_CR1K" [minWidth]="rongMacDinh" caption="TH CR1K" format="#,##0"
+            headerCellTemplate="titleHeaderTemplate24"> </dxi-column>
+        <dxi-column dataField="TyLe_CR1K" [minWidth]="rongMacDinh" caption="%CR1K" format="#,##0"
+            headerCellTemplate="titleHeaderTemplate25"> 
+            <dxo-format type="percent"></dxo-format>
+        </dxi-column>
+    </dxi-column>
+
+    <dxi-column caption="TFS" alignment="center">
+        <dxi-column dataField="KH_TFS" [minWidth]="rongMacDinh" caption="KH TFS" format="#,##0"
+            headerCellTemplate="titleHeaderTemplate26"> </dxi-column>
+        <dxi-column dataField="TH_TFS" [minWidth]="rongMacDinh" caption="TH TFS" format="#,##0"
+            headerCellTemplate="titleHeaderTemplate27"> </dxi-column>
+        <dxi-column dataField="TyLe_TFS" [minWidth]="rongMacDinh" caption="%TFS" format="#,##0"
+            headerCellTemplate="titleHeaderTemplate28"> 
+            <dxo-format type="percent"></dxo-format>
+        </dxi-column>
+    </dxi-column>
+
+    <div *dxTemplate="let info of 'titleHeaderTemplate'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+
+    <div *dxTemplate="let info of 'titleHeaderTemplate29'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+
+    <div *dxTemplate="let info of 'titleHeaderTemplate30'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+
+    <div *dxTemplate="let info of 'titleHeaderTemplate0'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+
+    <div *dxTemplate="let info of 'titleHeaderTemplate1'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+
+    <div *dxTemplate="let info of 'titleHeaderTemplate2'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+
+    <div *dxTemplate="let info of 'titleHeaderTemplate3'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+
+    <div *dxTemplate="let info of 'titleHeaderTemplate4'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+
+    <div *dxTemplate="let info of 'titleHeaderTemplate5' ">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+
+    <div *dxTemplate="let info of 'titleHeaderTemplate6'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+
+    <div *dxTemplate="let info of 'titleHeaderTemplate7'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    <div *dxTemplate="let info of 'titleHeaderTemplate8'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    <div *dxTemplate="let info of 'titleHeaderTemplate9'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    <div *dxTemplate="let info of 'titleHeaderTemplate10'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+
+    <div *dxTemplate="let info of 'titleHeaderTemplate11'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    <div *dxTemplate="let info of 'titleHeaderTemplate12'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    <div *dxTemplate="let info of 'titleHeaderTemplate13'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    <div *dxTemplate="let info of 'titleHeaderTemplate14'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    <div *dxTemplate="let info of 'titleHeaderTemplate15'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    <div *dxTemplate="let info of 'titleHeaderTemplate16'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    <div *dxTemplate="let info of 'titleHeaderTemplate17'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    <div *dxTemplate="let info of 'titleHeaderTemplate18'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    <div *dxTemplate="let info of 'titleHeaderTemplate19'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    <div *dxTemplate="let info of 'titleHeaderTemplate20'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    <div *dxTemplate="let info of 'titleHeaderTemplate21'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    <div *dxTemplate="let info of 'titleHeaderTemplate22'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    <div *dxTemplate="let info of 'titleHeaderTemplate23'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    <div *dxTemplate="let info of 'titleHeaderTemplate24'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    <div *dxTemplate="let info of 'titleHeaderTemplate25'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+
+    <div *dxTemplate="let info of 'titleHeaderTemplate26'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+
+    <div *dxTemplate="let info of 'titleHeaderTemplate27'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+
+    <div *dxTemplate="let info of 'titleHeaderTemplate28'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+
+
+</dx-data-grid>
+
+
+
+
+
+
+
+
+
+<dx-speed-dial-action icon="filter" label="" [index]="1" (onClick)="showFilter()">
+</dx-speed-dial-action>

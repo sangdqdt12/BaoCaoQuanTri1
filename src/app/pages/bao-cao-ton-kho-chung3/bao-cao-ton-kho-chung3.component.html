@@ -1,0 +1,351 @@
+
+<div class="w3-display-container w3-deep-orange" style="height:45px;">
+
+    <div class="w3-row">
+        <div class="w3-col s8 m8 l8">
+            <dx-drop-down-box
+            [(value)]="cap1Select"
+            valueExpr="key"
+            displayExpr="val"
+            placeholder="Chọn kiểu xe"
+            [showClearButton]="true"
+            [dataSource]="dataSourceCap1"
+            (onValueChanged)="cap1SelectChange($event)"
+            >
+            
+            <div *dxTemplate="let data of 'content'">
+            <dx-data-grid
+                    [dataSource]="dataSourceCap1"
+                    [columns]="['key']"
+                    [selection]="{ mode: 'multiple' }"
+                    [hoverStateEnabled]="true"
+                    [paging]="{ enabled: true, pageSize: 10 }"
+                    [filterRow]="{ visible: true }"
+                    [scrolling]="{ mode: 'virtual' }"
+                    [height]="345"
+                    [(selectedRowKeys)]="cap1Select"
+    
+            >
+            </dx-data-grid>
+            </div>
+            </dx-drop-down-box>
+        </div>
+
+        <div  class="w3-col s3 m3 l3 w3-display-right">
+            <dx-button
+            class="button-info"
+            text="Filter"
+            (onClick)="showFilter()">
+            </dx-button>
+          </div>
+
+    </div>
+  
+
+
+  </div>
+  
+
+
+
+
+
+
+  <dx-popup
+    maxWidth = "600"
+    [showTitle]="true"
+    title="Filter"
+    [dragEnabled]="false"
+    [closeOnOutsideClick]="false"
+    [(visible)]="popupVisible">
+
+
+    <div class="dx-fieldset">
+      <div class="dx-field">
+          <div class="dx-field-label">Date</div>
+          <div class="dx-field-value">
+              <dx-date-box
+                  [(value)]="ngayVal"
+                  type="date">
+              </dx-date-box>
+          </div>
+      </div>
+
+      <div class="dx-field">
+          <div class="dx-field-label">Khối</div>
+          <div class="dx-field-value">
+              <dx-select-box 
+              [dataSource]="donViCoSos"
+              displayExpr="ten_nh"
+              valueExpr="ma_nh"
+              [(value)] = "khoiVal"
+                >
+
+              </dx-select-box>
+          </div>
+      </div>
+
+      <div class="dx-field">
+        <div class="dx-field-label">Cấp</div>
+        <div class="dx-field-value">
+            <dx-select-box 
+            [dataSource]="capCbxd"
+            displayExpr="Ten"
+            valueExpr="Ma"
+            [(value)] = "capVal"
+            >
+            </dx-select-box>
+        </div>
+    </div>
+
+    </div>
+    <div style="position: absolute;right: 50px;bottom: 10px; ">
+      <dx-button
+      class="button-info"
+      with = "200"
+      text="   Ok  "
+      (onClick)="fillData()">
+      </dx-button>
+    </div>
+
+    <div style="position: absolute;right: 150px;bottom: 10px;  ">
+      <dx-button
+      class="button-info"
+      text="Cancel"
+      (onClick)="close()">
+      </dx-button>
+    </div>
+</dx-popup>
+
+
+
+
+<dx-data-grid 
+id="gridDetail"
+[showColumnHeaders]="true"
+[dataSource]="reportDataDetail"
+[showBorders]="true"
+[focusedRowEnabled]="false"
+[focusedRowIndex]="0"
+[columnHidingEnabled]="false"
+[columnAutoWidth]="false"
+[showColumnLines]="true"
+[showRowLines]="true"
+(onRowPrepared)="onRowPrepared($event)"
+[repaintChangesOnly]="true"
+(onCellPrepared)="onCellPrepared($event)"
+[rowAlternationEnabled]="false"
+>
+<dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+<dxo-sorting
+mode="none"> <!-- or "multiple" | "none" -->
+</dxo-sorting>
+
+<dxi-column dataField="ColTen" [width] = "100"   caption= "Mục" [fixed]="true"> </dxi-column>
+<dxi-column dataField="Tong" [width] = "60"   caption= "Total"> </dxi-column>
+<dxi-column dataField="Col0" [width] = "60" headerCellTemplate="titleHeaderTemplate0" [(visible)]="arrVisible[0]"> </dxi-column>
+<dxi-column dataField="Col1" [width] = "60" headerCellTemplate="titleHeaderTemplate1" [(visible)]="arrVisible[1]"> </dxi-column>
+<dxi-column dataField="Col2" [width] = "60" headerCellTemplate="titleHeaderTemplate2" [(visible)]="arrVisible[2]"> </dxi-column>
+<dxi-column dataField="Col3" [width] = "60" headerCellTemplate="titleHeaderTemplate3" [(visible)]="arrVisible[3]"> </dxi-column>
+<dxi-column dataField="Col4" [width] = "60" headerCellTemplate="titleHeaderTemplate4" [(visible)]="arrVisible[4]"> </dxi-column>
+<dxi-column dataField="Col5" [width] = "60" headerCellTemplate="titleHeaderTemplate5" [(visible)]="arrVisible[5]"> </dxi-column>
+<dxi-column dataField="Col6" [width] = "60" headerCellTemplate="titleHeaderTemplate6" [(visible)]="arrVisible[6]"> </dxi-column>
+<dxi-column dataField="Col7" [width] = "60" headerCellTemplate="titleHeaderTemplate7" [(visible)]="arrVisible[7]"> </dxi-column>
+<dxi-column dataField="Col8" [width] = "60" headerCellTemplate="titleHeaderTemplate8" [(visible)]="arrVisible[8]"> </dxi-column>
+<dxi-column dataField="Col9" [width] = "60" headerCellTemplate="titleHeaderTemplate9" [(visible)]="arrVisible[9]"> </dxi-column>
+<dxi-column dataField="Col10" [width] = "60" headerCellTemplate="titleHeaderTemplate10" [(visible)]="arrVisible[10]"> </dxi-column>
+<dxi-column dataField="Col11" [width] = "60" headerCellTemplate="titleHeaderTemplate11" [(visible)]="arrVisible[11]"> </dxi-column>
+<dxi-column dataField="Col12" [width] = "60" headerCellTemplate="titleHeaderTemplate12" [(visible)]="arrVisible[12]"> </dxi-column>
+<dxi-column dataField="Col13" [width] = "60" headerCellTemplate="titleHeaderTemplate13" [(visible)]="arrVisible[13]"> </dxi-column>
+<dxi-column dataField="Col14" [width] = "60" headerCellTemplate="titleHeaderTemplate14" [(visible)]="arrVisible[14]"> </dxi-column>
+<dxi-column dataField="Col15" [width] = "60" headerCellTemplate="titleHeaderTemplate15" [(visible)]="arrVisible[15]"> </dxi-column>
+
+
+<div *dxTemplate="let info of 'titleHeaderTemplate'">
+<p style="font-size:16px">{{info.column.caption}}</p>
+</div>
+
+
+<div *dxTemplate="let info of 'titleHeaderTemplate0'">
+    <div>{{arrHeader[0]}}</div>
+</div>
+
+<div *dxTemplate="let info of 'titleHeaderTemplate1'">
+    <div>{{arrHeader[1]}}</div>
+</div>
+
+
+<div *dxTemplate="let info of 'titleHeaderTemplate2'">
+    <div>{{arrHeader[2]}}</div>
+</div>
+
+
+
+<div *dxTemplate="let info of 'titleHeaderTemplate3'">
+    <div>{{arrHeader[3]}}</div>
+</div>
+
+<div *dxTemplate="let info of 'titleHeaderTemplate4'">
+    <div>{{arrHeader[4]}}</div>
+</div>
+
+<div *dxTemplate="let info of 'titleHeaderTemplate5'">
+    <div>{{arrHeader[5]}}</div>
+</div>
+
+<div *dxTemplate="let info of 'titleHeaderTemplate6'">
+    <div>{{arrHeader[6]}}</div>
+</div>
+
+<div *dxTemplate="let info of 'titleHeaderTemplate7'">
+    <div>{{arrHeader[7]}}</div>
+</div>
+<div *dxTemplate="let info of 'titleHeaderTemplate8'">
+    <div>{{arrHeader[8]}}</div>
+</div>
+<div *dxTemplate="let info of 'titleHeaderTemplate9'">
+    <div>{{arrHeader[9]}}</div>
+</div>
+<div *dxTemplate="let info of 'titleHeaderTemplate10'">
+    <div>{{arrHeader[10]}}</div>
+</div>
+
+<div *dxTemplate="let info of 'titleHeaderTemplate11'">
+    <div>{{arrHeader[11]}}</div>
+</div>
+<div *dxTemplate="let info of 'titleHeaderTemplate12'">
+    <div>{{arrHeader[12]}}</div>
+</div>
+<div *dxTemplate="let info of 'titleHeaderTemplate13'">
+    <div>{{arrHeader[13]}}</div>
+</div>
+<div *dxTemplate="let info of 'titleHeaderTemplate14'">
+    <div>{{arrHeader[14]}}</div>
+</div>
+<div *dxTemplate="let info of 'titleHeaderTemplate15'">
+    <div>{{arrHeader[15]}}</div>
+</div>
+
+</dx-data-grid>
+
+
+
+<dx-popup
+    [(width)]="popupWidth"
+    [height]="300"
+    [showTitle]="true"
+    title="Chi tiết"
+    [dragEnabled]="false"
+    [closeOnOutsideClick]="false"
+    [(visible)]="popupDetailVisible">
+
+    <!--
+    <dxo-position
+    at="bottom"
+    my="center"
+    [of]="positionOf">
+    </dxo-position>
+
+      
+-->
+    <div>
+
+
+        
+    <dx-drop-down-box
+    [(value)]="cap2Select"
+    valueExpr="key"
+    displayExpr="val"
+    placeholder="Select a value..."
+    [showClearButton]="true"
+    [dataSource]="dataSourceCap2"
+    (onValueChanged)="cap2SelectChange($event)"
+    >
+    
+    <div *dxTemplate="let data of 'content'">
+    <dx-data-grid
+            [dataSource]="dataSourceCap2"
+            [columns]="['key']"
+            [selection]="{ mode: 'multiple' }"
+            [hoverStateEnabled]="true"
+            [paging]="{ enabled: true, pageSize: 10 }"
+            [filterRow]="{ visible: true }"
+            [scrolling]="{ mode: 'virtual' }"
+            [height]="345"
+            [(selectedRowKeys)]="cap2Select"
+    >
+    </dx-data-grid>
+    </div>
+    </dx-drop-down-box>
+
+
+    <dx-drop-down-box
+    [(value)]="cap3Select"
+    valueExpr="key"
+    displayExpr="val"
+    placeholder="Select a value..."
+    [showClearButton]="true"
+    [dataSource]="dataSourceCap3"
+    
+    >
+    
+    <div *dxTemplate="let data of 'content'">
+    <dx-data-grid
+            [dataSource]="dataSourceCap3"
+            [columns]="['key']"
+            [selection]="{ mode: 'multiple' }"
+            [hoverStateEnabled]="true"
+            [paging]="{ enabled: true, pageSize: 10 }"
+            [filterRow]="{ visible: true }"
+            [scrolling]="{ mode: 'virtual' }"
+            [height]="345"
+            [(selectedRowKeys)]="cap3Select"
+    >
+    </dx-data-grid>
+    </div>
+    </dx-drop-down-box>
+
+    </div>
+    <dx-button
+        icon="check"
+        type="success"
+        text="Ok"
+        (onClick)="okFilter()">
+    </dx-button>
+
+    <dx-button
+    icon="close"
+    type="default"
+    text="Cancel"
+    (onClick)="okFilter()">
+</dx-button>
+
+</dx-popup>
+
+
+
+
+
+<div style="position: absolute;left: 1px;bottom: 10px;" class=" w3-light-grey">
+
+    <dx-tabs [dataSource]="loaiTons" 
+    [width]="innerWidth"
+    [scrollByContent]="true"
+    [showNavButtons]="true"
+    (onItemClick)="selLoaiTon($event)"></dx-tabs>
+  
+    <dx-tabs [dataSource]="cap2s" 
+    [width]="innerWidth"
+    [scrollByContent]="true"
+    [showNavButtons]="true"
+    (onItemClick)="selCap2($event)"></dx-tabs>
+
+    
+</div>
+
+
+<dx-load-indicator 
+id="large-indicator" 
+height="60" width="60"
+[visible]="loadIndicatorVisible"
+></dx-load-indicator>

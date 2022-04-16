@@ -1,0 +1,22 @@
+<div class="ExBoder">
+    <dx-box direction="col" width="100%" [height]="height">
+       
+            <dxi-item class="rect demo-light" [ratio]="1">
+                <h6>TỔNG DTDV</h6>
+            </dxi-item>
+        
+            <dxi-item class="rect demo-light" [ratio]="1">
+                <h6>{{dataSource.thuc_hien_16| number}}</h6>
+            </dxi-item>
+       
+            <dxi-item class="rect demo-light" [ratio]="1">
+                <p>Số KH: {{dataSource.ke_hoach_16| number}}</p>
+            </dxi-item>
+       
+            <dxi-item class="rect demo-light" [ratio]="1">
+                <p>% HTKH: {{dataSource.htkh_16| number}}</p>
+            </dxi-item>
+       
+    </dx-box>
+
+</div>

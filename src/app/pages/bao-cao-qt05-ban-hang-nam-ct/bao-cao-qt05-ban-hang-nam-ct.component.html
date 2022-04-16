@@ -1,0 +1,351 @@
+<div class="long-title">
+    <p>BÁO CÁO BÁN HÀNG THEO NĂM - Từ ngày {{this.tuNgayVal|date: 'dd-MM-yyyy'}} đến ngày {{this.denNgayVal|date: 'dd-MM-yyyy'}}</p>
+  </div>
+
+<dx-popup
+maxWidth = "600"
+
+[showTitle]="true"
+title="Filter"
+[dragEnabled]="false"
+[closeOnOutsideClick]="false"
+[(visible)]="popupVisible">
+
+<div class="dx-fieldset">
+
+   
+
+    <div class="dx-field">
+        <div class="dx-field-label">Từ ngày</div>
+        <div class="dx-field-value">
+            <dx-date-box
+                [(value)]="tuNgayVal"
+                type="date">
+            </dx-date-box>
+        </div>
+    </div>
+
+
+    <div class="dx-field">
+        <div class="dx-field-label">Đến ngày</div>
+        <div class="dx-field-value">
+            <dx-date-box
+                [(value)]="denNgayVal"
+                type="date">
+            </dx-date-box>
+        </div>
+    </div>
+
+    <div class="dx-field">
+        <div class="dx-field-label">Khối</div>
+        <div class="dx-field-value">
+            <dx-select-box 
+            [dataSource]="donViCoSos"
+            displayExpr="ten_nh"
+            valueExpr="ma_nh"
+            [(value)] = "khoiVal"
+              >
+
+            </dx-select-box>
+        </div>
+    </div>
+
+    <div class="dx-field">
+        <div class="dx-field-label">Đơn vị</div>
+        <div class="dx-field-value">
+            <dx-select-box 
+            [dataSource]="donviList"
+            displayExpr="Ten_dvcs"
+            valueExpr="Ma_dvcs"
+            [showClearButton]="true"
+            [(value)] = "donviVal"
+              >
+
+            </dx-select-box>
+        </div>
+    </div>
+
+    <div class="dx-field">
+      <div class="dx-field-label">Cấp</div>
+      <div class="dx-field-value">
+          <dx-select-box 
+          [dataSource]="capCbxd"
+          displayExpr="Ten"
+          valueExpr="Ma"
+          [(value)] = "capVal"
+          >
+          </dx-select-box>
+      </div>
+  </div>
+
+  <div class="dx-field">
+    <div class="dx-field-label">Loại xe lô</div>
+    <div class="dx-field-value">
+        <dx-check-box [(value)]="isLoaiXeLo"></dx-check-box>
+    </div>
+</div>
+
+
+  </div>
+  <div style="position: absolute;right: 50px;bottom: 10px; ">
+    <dx-button
+    class="button-info"
+    with = "200"
+    text="   Ok  "
+    (onClick)="fillData()">
+    </dx-button>
+  </div>
+
+  <div style="position: absolute;right: 150px;bottom: 10px;  ">
+    <dx-button
+    class="button-info"
+    text="Cancel"
+    (onClick)="close()">
+    </dx-button>
+  </div>
+</dx-popup>
+
+
+
+<div class="w3-row ">
+    <div class="w3-col l11 m11 s11">
+        
+        <dx-data-grid 
+        id="gridDetail"
+        style="margin-right:3%"
+        [height] = "gridHeight"
+        [showColumnHeaders]="true"
+        [dataSource]="reportDataDetail"
+        [showBorders]="true"
+        [focusedRowEnabled]="false"
+        [focusedRowIndex]="0"
+        [columnHidingEnabled]="false"
+        [columnAutoWidth]="false"
+        [showColumnLines]="true"
+        [showRowLines]="true"
+        (onRowPrepared)="onRowPrepared($event)"
+        [repaintChangesOnly]="true"
+        (onCellPrepared)="onCellPrepared($event)"
+        [rowAlternationEnabled]="false"
+        >
+
+        <dxo-paging [enabled]="false"></dxo-paging>
+        <dxo-scrolling
+        mode="standard"> <!-- or "virtual" | "infinite" -->
+        </dxo-scrolling>
+
+        <dxo-sorting
+        mode="none"> <!-- or "multiple" | "none" -->
+        </dxo-sorting>
+
+
+        <dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+
+        <dxo-sorting
+        mode="none"> <!-- or "multiple" | "none" -->
+        </dxo-sorting>
+
+        <dxi-column dataField="Ma_so"  [width] = "200" [fixed]="true" caption= "Kiểu xe" headerCellTemplate="titleHeaderTemplate"> </dxi-column>
+
+
+        <dxi-column dataField="TotalT" [(visible)]="viewGG" [minWidth] = "rongMacDinh" caption= "IDMC" format="#,##0" headerCellTemplate="titleHeaderTemplate5"> </dxi-column>
+
+        <dxi-column dataField="T01" [(visible)]="viewGG" [minWidth] = "rongMacDinh" caption= "T01" format="#,##0" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+        <dxi-column dataField="T02" [(visible)]="viewGG" [minWidth] = "rongMacDinh" caption= "T02" format="#,##0" headerCellTemplate="titleHeaderTemplate1"> </dxi-column>
+        <dxi-column dataField="T03" [(visible)]="viewGG" [minWidth] = "rongMacDinh" caption= "T03" format="#,##0" headerCellTemplate="titleHeaderTemplate2"> </dxi-column>
+        <dxi-column dataField="T04" [(visible)]="viewGG" [minWidth] = "rongMacDinh" caption= "T04" format="#,##0" headerCellTemplate="titleHeaderTemplate3"> </dxi-column>
+        <dxi-column dataField="T05" [(visible)]="viewGG" [minWidth] = "rongMacDinh" caption= "T05" format="#,##0" headerCellTemplate="titleHeaderTemplate4"> </dxi-column>
+        <dxi-column dataField="T06" [(visible)]="viewGG" [minWidth] = "rongMacDinh" caption= "T06" format="#,##0" headerCellTemplate="titleHeaderTemplate5"> </dxi-column>
+        <dxi-column dataField="T07" [(visible)]="viewGG" [minWidth] = "rongMacDinh" caption= "T07" format="#,##0" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+        <dxi-column dataField="T08" [(visible)]="viewGG" [minWidth] = "rongMacDinh" caption= "T08" format="#,##0" headerCellTemplate="titleHeaderTemplate1"> </dxi-column>
+        <dxi-column dataField="T09" [(visible)]="viewGG" [minWidth] = "rongMacDinh" caption= "T09" format="#,##0" headerCellTemplate="titleHeaderTemplate2"> </dxi-column>
+        <dxi-column dataField="T10" [(visible)]="viewGG" [minWidth] = "rongMacDinh" caption= "T10" format="#,##0" headerCellTemplate="titleHeaderTemplate3"> </dxi-column>
+        <dxi-column dataField="T11" [(visible)]="viewGG" [minWidth] = "rongMacDinh" caption= "T11" format="#,##0" headerCellTemplate="titleHeaderTemplate4"> </dxi-column>
+        <dxi-column dataField="T12" [(visible)]="viewGG" [minWidth] = "rongMacDinh" caption= "T12" format="#,##0" headerCellTemplate="titleHeaderTemplate5"> </dxi-column>
+       
+        
+        <dxi-column dataField="B01" [(visible)]="viewK" [minWidth] = "rongMacDinh" caption= "B01" format="#,##0" headerCellTemplate="titleHeaderTemplate2"> </dxi-column>
+        <dxi-column dataField="B02" [(visible)]="viewK" [minWidth] = "rongMacDinh" caption= "B02" format="#,##0" headerCellTemplate="titleHeaderTemplate3"> </dxi-column>
+        <dxi-column dataField="B03" [(visible)]="viewK" [minWidth] = "rongMacDinh" caption= "B03" format="#,##0" headerCellTemplate="titleHeaderTemplate4"> </dxi-column>
+        <dxi-column dataField="B04" [(visible)]="viewK" [minWidth] = "rongMacDinh" caption= "B04" format="#,##0" headerCellTemplate="titleHeaderTemplate5"> </dxi-column>
+       
+        
+        <dxi-column dataField="Q01" [(visible)]="viewT" [minWidth] = "rongMacDinh" caption= "Q01" format="#,##0" headerCellTemplate="titleHeaderTemplate2"> </dxi-column>
+        <dxi-column dataField="Q02" [(visible)]="viewT" [minWidth] = "rongMacDinh" caption= "Q02" format="#,##0" headerCellTemplate="titleHeaderTemplate3"> </dxi-column>
+        <dxi-column dataField="Q03" [(visible)]="viewT" [minWidth] = "rongMacDinh" caption= "Q03" format="#,##0" headerCellTemplate="titleHeaderTemplate4"> </dxi-column>
+        <dxi-column dataField="Q04" [(visible)]="viewT" [minWidth] = "rongMacDinh" caption= "Q04" format="#,##0" headerCellTemplate="titleHeaderTemplate5"> </dxi-column>
+       
+
+        <div *dxTemplate="let info of 'titleHeaderTemplate'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+        </div>
+
+
+        <div *dxTemplate="let info of 'titleHeaderTemplate0'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+        </div>
+
+        <div *dxTemplate="let info of 'titleHeaderTemplate1'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+        </div>
+
+        <div *dxTemplate="let info of 'titleHeaderTemplate2'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+        </div>
+
+        <div *dxTemplate="let info of 'titleHeaderTemplate3'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+        </div>
+
+        <div *dxTemplate="let info of 'titleHeaderTemplate4'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+        </div>
+
+        <div *dxTemplate="let info of 'titleHeaderTemplate5'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+        </div>
+
+        <div *dxTemplate="let info of 'titleHeaderTemplate6'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+        </div>
+
+        <div *dxTemplate="let info of 'titleHeaderTemplate7'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+        </div>
+        <div *dxTemplate="let info of 'titleHeaderTemplate8'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+        </div>
+        <div *dxTemplate="let info of 'titleHeaderTemplate9'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+        </div>
+        <div *dxTemplate="let info of 'titleHeaderTemplate10'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+        </div>
+
+        <div *dxTemplate="let info of 'titleHeaderTemplate11'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+        </div>
+        <div *dxTemplate="let info of 'titleHeaderTemplate12'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+        </div>
+        <div *dxTemplate="let info of 'titleHeaderTemplate13'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+        </div>
+        <div *dxTemplate="let info of 'titleHeaderTemplate14'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+        </div>
+        <div *dxTemplate="let info of 'titleHeaderTemplate15'">
+        <p style="font-size:16px">{{info.column.caption}}</p>
+        </div>
+
+        </dx-data-grid>
+
+    </div>
+
+    <div class="w3-col l1 m1 s1 ">
+
+        <div class="w3-sidebar w3-bar-block w3-padding-16 w3-sand" style="width:10%;right:0">
+            <table>
+                <tr>
+                    <th colspan = "2">Lựa chọn</th>
+                </tr>
+                
+                <tr>
+                    <th></th>
+                    <div class="dx-field">
+                        <dx-check-box [(value)]="chonCKD"
+                        (onValueChanged)="chonXuatXuOnchange($event)"
+                        text="CKD"
+                    
+                        ></dx-check-box> 
+                    </div>
+                </tr>
+                <tr>
+                    <th></th>
+                    <div class="dx-field">
+                        <dx-check-box [(value)]="chonCBU"
+                        (onValueChanged)="chonXuatXuOnchange($event)"
+                        text="CBU"
+                        ></dx-check-box>
+                    </div>
+                </tr>  
+                <tr>
+                    <th></th>
+                    <div class="dx-field">
+                        <dx-check-box [(value)]="chonAll"
+                        (onValueChanged)="chonXuatXuOnchange($event)"
+                        text="ALL"
+                        ></dx-check-box>
+                    </div>
+                </tr>  
+                
+                <tr>
+                    <th colspan = "2">View dữ liệu</th>
+                </tr>
+                
+                <tr>
+                    <th></th>
+                    <div class="dx-field">
+                        <dx-check-box [(value)]="viewGG"
+                        (onValueChanged)="chonViewOnchange($event)"
+                        text="Tháng"
+                    
+                        ></dx-check-box> 
+                    </div>
+                </tr>
+                <tr>
+                    <th></th>
+                    <div class="dx-field">
+                        <dx-check-box [(value)]="viewK"
+                        (onValueChanged)="chonViewOnchange($event)"
+                        text="Bình quân"
+                        ></dx-check-box>
+                    </div>
+                </tr>  
+                <tr>
+                    <th></th>
+                    <div class="dx-field">
+                        <dx-check-box [(value)]="viewT"
+                        (onValueChanged)="chonViewOnchange($event)"
+                        text="Quý"
+                        ></dx-check-box>
+                    </div>
+                </tr>  
+     
+            </table>
+        
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+<div style="position: absolute;bottom: 2px;" class=" w3-blue">
+
+   
+    <dx-tabs [dataSource]="cap2s" 
+    [width]="barWidth"
+    [scrollByContent]="true"
+    [showNavButtons]="true"
+    [(visible)]="anMenuCap2"
+    (onItemClick)="selCap2($event)"></dx-tabs>
+
+    
+</div>
+
+
+
+
+
+
+<dx-speed-dial-action
+icon="filter"
+label=""
+[index]="1"
+(onClick)="showFilter()">
+</dx-speed-dial-action>
+
+

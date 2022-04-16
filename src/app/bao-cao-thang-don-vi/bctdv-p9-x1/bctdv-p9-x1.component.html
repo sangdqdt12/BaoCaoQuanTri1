@@ -1,0 +1,38 @@
+<div class="ExBoder">
+    <dx-box direction="col" width="100%" [height]="height">
+       
+            <dxi-item class="rect demo-light" [ratio]="1">
+                <h6>D.THU NỘI THẤT</h6>
+            </dxi-item>
+        
+            <dxi-item class="rect demo-light" [ratio]="1">
+                <h6>{{dataSource.dt_nt_09| number}}</h6>
+            </dxi-item>
+       
+            <dxi-item class="rect demo-light" [ratio]="1">
+                <p>So KH: {{dataSource.htkh_09| number}}</p>
+            </dxi-item>
+       
+            <dxi-item class="rect demo-light" [ratio]="1">
+                <p>So CK: {{dataSource.so_ck_dtnt_09| number}}</p>
+            </dxi-item>
+
+            <dxi-item class="rect demo-light" [ratio]="1">
+                <h6>DTNT/xe</h6>
+            </dxi-item>
+        
+            <dxi-item class="rect demo-light" [ratio]="1">
+                <h6>{{dataSource.nt_xe_09| number}}</h6>
+            </dxi-item>
+       
+            <dxi-item class="rect demo-light" [ratio]="1">
+                <p>So KH: {{dataSource.htkh_nt_xe_09| number}}</p>
+            </dxi-item>
+       
+            <dxi-item class="rect demo-light" [ratio]="1">
+                <p>So CK: {{dataSource.so_ck_nt_xe_09| number}}</p>
+            </dxi-item>
+       
+    </dx-box>
+
+</div>

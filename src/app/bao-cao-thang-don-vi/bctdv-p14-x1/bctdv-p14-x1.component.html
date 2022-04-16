@@ -1,0 +1,22 @@
+<div class="ExBoder">
+    <dx-box direction="col" width="100%" [height]="height">
+       
+            <dxi-item class="rect demo-light" [ratio]="1">
+                <h6>Hiệu suất TVBH</h6>
+            </dxi-item>
+        
+            <dxi-item class="rect demo-light" [ratio]="1">
+                <h6>{{dataSource.hieu_suat_xe_14| number}}</h6>
+            </dxi-item>
+       
+            <dxi-item class="rect demo-light" [ratio]="1">
+                <p>DTNT/TVBH: {{dataSource.dtnt_tvbh_14| number}}</p>
+            </dxi-item>
+       
+            <dxi-item class="rect demo-light" [ratio]="1">
+                <p>DTBH/TVBH: {{dataSource.dtbh_tvbh_14| number}}</p>
+            </dxi-item>
+       
+    </dx-box>
+
+</div>

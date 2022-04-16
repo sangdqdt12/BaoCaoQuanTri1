@@ -1,0 +1,167 @@
+<dx-popup maxWidth="600" [showTitle]="false" title="Filter" [dragEnabled]="false" [closeOnOutsideClick]="false"
+    [(visible)]="popupVisible">
+
+
+    <div class="dx-fieldset">
+
+        <div class="dx-field">
+            <div class="dx-field-label">Từ ngày</div>
+            <div class="dx-field-value">
+                <dx-date-box [(value)]="tuNgayVal" type="date">
+                </dx-date-box>
+            </div>
+        </div>
+
+        <div class="dx-field">
+            <div class="dx-field-label">Khối</div>
+            <div class="dx-field-value">
+                <dx-select-box [dataSource]="donViCoSos" displayExpr="ten_nh" valueExpr="ma_nh" [(value)]="khoiVal">
+                </dx-select-box>
+            </div>
+        </div>
+    
+
+    </div>
+
+    <div style="position: absolute;right: 50px;bottom: 10px; ">
+        <dx-button class="button-info" with="200" text="   Ok  " (onClick)="fillData()">
+        </dx-button>
+    </div>
+
+    <div style="position: absolute;right: 150px;bottom: 10px;  ">
+        <dx-button class="button-info" text="Cancel" (onClick)="close()">
+        </dx-button>
+    </div>
+</dx-popup>
+
+
+<!-- <div class="w3-row   " >
+    <div class="w3-col l6 m12 s12">
+        <div class=" w3-card w3-panel  w3-khaki w3-card w3-display-container" >
+            <app-xe-ky-hop-dong
+            [TongXeKy] = "TongXeKy"
+            [TongXeKyLuyKe] = "TongXeKyLuyKe"
+            >
+
+            </app-xe-ky-hop-dong>
+        </div>
+    </div>
+    <div class="w3-col l6 m12 s12">
+        <div class=" w3-card w3-panel w3-amber w3-card w3-display-container">
+            <app-xe-ky-loi-nhuan>
+                
+            </app-xe-ky-loi-nhuan>
+        </div>
+    </div>
+
+</div> -->
+
+<div class="w3-row  ">
+    <div class="w3-col l6 m12 s12 ">
+       
+            <app-kd1-p1 [TongXeKy] = "TongXeKy" [TongXeKyLuyKe] = "TongXeKyLuyKe">
+            </app-kd1-p1>
+        
+    </div>
+
+    <div class="w3-col l6 m12 s12 ">
+
+        <app-kd1-p2 [TyLeKeHoach] = "TyLeKeHoach">
+
+        </app-kd1-p2>
+     
+    </div>
+
+</div>
+
+<div class="w3-row  ">
+    <div class="w3-col l6 m12 s12">
+            <app-kd1-xe-ky 
+                [width]="chartWith"
+                [dataSource] = "data_CP_WBI_BE_01_01"
+                [width] = "chartWith"
+                [height] = "chartHeight"
+                
+                >
+            </app-kd1-xe-ky>
+    </div>
+    <div class="w3-col l6 m12 s12">
+            <app-kd2-xe-tuan [width]="chartWith"
+                [dataSource] = "data_CP_WBI_BE_01_02"
+                [width] = "chartWith"
+                [height] = "chartHeight"
+                >
+            </app-kd2-xe-tuan>
+    </div>
+</div>
+
+<div class="w3-row   ">
+    <div class="w3-col l6 m12 s12">
+
+            <app-kd4-xe-ky-cwd [width]="chartWith"
+            [dataSource] = "data_CP_WBI_BE_01_04"
+            [width] = "chartWith"
+            [height] = "chartHeight"
+            >
+
+            </app-kd4-xe-ky-cwd>
+
+    </div>
+    <div class="w3-col l6 m12 s12">
+
+            <app-kd5-xe-ky-thang [width]="chartWith"
+            [dataSource] = "data_CP_WBI_BE_01_05"
+            [width] = "chartWith"
+            [height] = "chartHeight"
+            >
+
+            </app-kd5-xe-ky-thang>
+
+    </div>
+</div>
+
+<div class="w3-cell-row">
+
+
+  
+
+    <div class=" w3-cell w3-cell-middle">
+        <dx-tabs [dataSource]="danhSachDonVis" 
+        [width]="barWidth"
+        [height]="danhSachDonViHeight"
+        [scrollByContent]="true"
+        [showNavButtons]="true"
+        (onItemClick)="filterDonVi($event)"></dx-tabs>
+    </div>
+
+
+    
+    <div class=" w3-cell w3-cell-middle">
+
+        <dx-button icon="search" (onClick)="showFilter()">
+        </dx-button>
+
+    </div>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <dx-speed-dial-action icon="search" label="Lọc" [index]="1" (onClick)="showFilter()">
+</dx-speed-dial-action> -->
+
+
+
+

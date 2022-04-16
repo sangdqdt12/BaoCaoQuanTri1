@@ -1,0 +1,399 @@
+<div class="long-title">
+  <p>BÁO CÁO KHÁCH HÀNG TIỀM NĂNG - Từ ngày {{this.tuNgayVal|date: 'dd-MM-yyyy'}} đến ngày {{this.denNgayVal|date: 'dd-MM-yyyy'}}</p>
+</div>
+
+<dx-popup
+maxWidth = "600"
+[height] = "popupHeigt"
+[showTitle]="false"
+title="Filter"
+[dragEnabled]="false"
+[closeOnOutsideClick]="false"
+[(visible)]="popupVisible">
+
+
+<dx-tab-panel>
+  <dxi-item title="Cơ bản" >
+    <table class="w3-table">
+      <tr >
+        <td >    
+          <span>Từ ngày </span>
+          <dx-date-box
+          [(value)]="tuNgayVal"
+          type="date">
+        </dx-date-box>
+      </td>
+  
+      <td >
+          <span>Đến ngày </span>
+          <dx-date-box
+            [(value)]="denNgayVal"
+            type="date">
+          </dx-date-box>
+      </td>
+      </tr>
+      <tr>
+        <td>
+          <span>Khối </span>
+          <dx-select-box 
+          [dataSource]="donViCoSos"
+          displayExpr="ten_nh"
+          valueExpr="ma_nh"
+          
+          [(value)] = "khoiVal"
+            >
+
+          </dx-select-box>
+        </td>
+        <td>
+          <span>Đơn vị</span>
+          <dx-select-box 
+          [dataSource]="donviList"
+          displayExpr="Ten_dvcs"
+          valueExpr="Ma_dvcs"
+          [showClearButton]="true"
+          [(value)] = "donviVal"
+            >
+
+          </dx-select-box>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <span>Cấp</span>
+
+          <dx-select-box 
+          [dataSource]="capCbxd"
+          displayExpr="Ten"
+          valueExpr="Ma"
+          [showClearButton]="true"
+          [(value)] = "capVal"
+          >
+          </dx-select-box>
+        </td>
+        <td></td>
+      </tr>
+
+    </table>
+
+  </dxi-item>
+  <dxi-item title="Nâng cao" >
+    <table class="w3-table">
+      <tr >
+        <td >    
+          <span>Kiểu xe </span>
+          <dx-select-box 
+          [dataSource]="kieuxeList"
+          displayExpr="ten_kx"
+          valueExpr="ma_kx"
+          [(value)] = "kieuXeVal"
+            >
+  
+          </dx-select-box>
+      </td>
+  
+      <td >
+          <span>Tình trạng </span>
+          <dx-select-box 
+          [dataSource]="tinhtranKhachList"
+          displayExpr="ten_ttkh"
+          valueExpr="ma_ttkh"
+          [(value)] = "tinhTranKhachVal"
+            >
+  
+          </dx-select-box>
+      </td>
+      </tr>
+      <tr>
+        <td>
+          <span>Nguồn khách </span>
+          <dx-select-box 
+          [dataSource]="nguonKhachList"
+          displayExpr="ten"
+          valueExpr="ma"
+          [(value)] = "nguonKhachVal"
+            >
+  
+          </dx-select-box>
+        </td>
+        <td>
+    
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          
+        </td>
+        <td></td>
+      </tr>
+
+    </table>
+ 
+
+  </dxi-item>
+
+</dx-tab-panel>
+
+
+
+    <div style="position: absolute;right: 50px;bottom: 10px; ">
+      <dx-button
+      class="button-info"
+      with = "200"
+      text="   Ok  "
+      (onClick)="fillData()">
+      </dx-button>
+    </div>
+  
+    <div style="position: absolute;right: 150px;bottom: 10px;  ">
+      <dx-button
+      class="button-info"
+      text="Cancel"
+      (onClick)="close()">
+      </dx-button>
+    </div>
+
+
+
+</dx-popup>
+
+
+
+
+
+  <div >
+    <dx-data-grid 
+    
+    id="gridDetail"
+[height] = "gridHeight"
+[showColumnHeaders]="true"
+[dataSource]="reportDataDetail"
+[showBorders]="true"
+[focusedRowEnabled]="false"
+[focusedRowIndex]="0"
+[columnHidingEnabled]="false"
+[columnAutoWidth]="false"
+[showColumnLines]="true"
+[showRowLines]="true"
+(onRowPrepared)="onRowPrepared($event)"
+[repaintChangesOnly]="true"
+(onCellPrepared)="onCellPrepared($event)"
+[rowAlternationEnabled]="false"
+>
+
+<dxo-paging [enabled]="false"></dxo-paging>
+<dxo-scrolling
+  mode="standard"> <!-- or "virtual" | "infinite" -->
+</dxo-scrolling>
+
+<dxo-sorting
+mode="none"> <!-- or "multiple" | "none" -->
+</dxo-sorting>
+
+
+<dxo-column-fixing [enabled]="true"></dxo-column-fixing>
+
+<dxo-sorting
+mode="none"> <!-- or "multiple" | "none" -->
+</dxo-sorting>
+    
+    <dxi-column dataField="Chi_Tieu"  [width] = "200" [fixed]="true" caption= "Chỉ tiêu" headerCellTemplate="titleHeaderTemplate"> </dxi-column>
+    
+    
+    
+    <dxi-column [(visible)]="viewT" dataField="DV01"  [minWidth] = "rongMacDinh" caption= "TMD" format="#,##0" headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+    <dxi-column [(visible)]="viewT" dataField="DV05"  [minWidth] = "rongMacDinh" caption= "TTX" format="#,##0" headerCellTemplate="titleHeaderTemplate1"> </dxi-column>
+    <dxi-column [(visible)]="viewT" dataField="DV06"  [minWidth] = "rongMacDinh" caption= "TIHD" format="#,##0" headerCellTemplate="titleHeaderTemplate2"> </dxi-column>
+    <dxi-column [(visible)]="viewT" dataField="DV03"  [minWidth] = "rongMacDinh" caption= "TBN" format="#,##0" headerCellTemplate="titleHeaderTemplate3"> </dxi-column>
+    <dxi-column [(visible)]="viewT" dataField="DV08"  [minWidth] = "rongMacDinh" caption= "TTS" format="#,##0" headerCellTemplate="titleHeaderTemplate4"> </dxi-column>
+    <dxi-column [(visible)]="viewT" dataField="DV04" [minWidth] = "rongMacDinh" caption= "TPT" format="#,##0" headerCellTemplate="titleHeaderTemplate5"> </dxi-column>
+    
+    <dxi-column [(visible)]="viewF" dataField="DV01" [minWidth]="rongMacDinh" caption="TLF" format="#,##0"
+                headerCellTemplate="titleHeaderTemplate0"> </dxi-column>
+            <dxi-column [(visible)]="viewF" dataField="DV02" [minWidth]="rongMacDinh" caption="TXF" format="#,##0"
+                headerCellTemplate="titleHeaderTemplate1"> </dxi-column>
+            <dxi-column [(visible)]="viewF" dataField="DV03" [minWidth]="rongMacDinh" caption="HNF" format="#,##0"
+                headerCellTemplate="titleHeaderTemplate2"> </dxi-column>
+            <dxi-column [(visible)]="viewF" dataField="DV04" [minWidth]="rongMacDinh" caption="LBF" format="#,##0"
+                headerCellTemplate="titleHeaderTemplate3"> </dxi-column>
+            <dxi-column  [(visible)]="viewF"dataField="DV05" [minWidth]="rongMacDinh" caption="QNF" format="#,##0"
+                headerCellTemplate="titleHeaderTemplate4"> </dxi-column>
+            <dxi-column  [(visible)]="viewF"dataField="DV06" [minWidth]="rongMacDinh" caption="BGF" format="#,##0"
+                headerCellTemplate="titleHeaderTemplate5"> </dxi-column>
+                
+    <dxi-column dataField="TotalDV" [minWidth] = "rongMacDinh" caption= "IDMC" format="#,##0" headerCellTemplate="titleHeaderTemplate5"> </dxi-column>
+    
+    
+    <div *dxTemplate="let info of 'titleHeaderTemplate'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    
+    
+    <div *dxTemplate="let info of 'titleHeaderTemplate0'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    
+    <div *dxTemplate="let info of 'titleHeaderTemplate1'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    
+    <div *dxTemplate="let info of 'titleHeaderTemplate2'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    
+    <div *dxTemplate="let info of 'titleHeaderTemplate3'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    
+    <div *dxTemplate="let info of 'titleHeaderTemplate4'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    
+    <div *dxTemplate="let info of 'titleHeaderTemplate5'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    
+    <div *dxTemplate="let info of 'titleHeaderTemplate6'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    
+    <div *dxTemplate="let info of 'titleHeaderTemplate7'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    <div *dxTemplate="let info of 'titleHeaderTemplate8'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    <div *dxTemplate="let info of 'titleHeaderTemplate9'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    <div *dxTemplate="let info of 'titleHeaderTemplate10'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    
+    <div *dxTemplate="let info of 'titleHeaderTemplate11'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    <div *dxTemplate="let info of 'titleHeaderTemplate12'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    <div *dxTemplate="let info of 'titleHeaderTemplate13'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    <div *dxTemplate="let info of 'titleHeaderTemplate14'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    <div *dxTemplate="let info of 'titleHeaderTemplate15'">
+    <p style="font-size:16px">{{info.column.caption}}</p>
+    </div>
+    
+    </dx-data-grid>
+    
+  </div>
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="w3-cell-row">
+
+
+
+  <div class="w3-container w3-cell w3-cell-middle">
+
+      <dx-button icon="search" (onClick)="showFilter()">
+      </dx-button>
+
+  </div>
+
+
+  <div class="w3-container  w3-cell w3-cell-middle">
+
+      <dx-button icon="filter" (onClick)="showFilterModle()">
+      </dx-button>
+
+
+  </div>
+
+
+  
+
+
+</div>
+
+
+<dx-popup
+maxWidth = "600"
+[showTitle]="false"
+[dragEnabled]="false"
+[closeOnOutsideClick]="false"
+[(visible)]="filterModelVisible">
+
+
+<div class="w3-cell-row">
+
+    <div class="w3-container w3-cell w3-cell-top">
+        <dx-check-box [(value)]="chonCKD"
+        (onValueChanged)="chonXuatXuOnchange($event)"
+        text="CKD"
+        
+        ></dx-check-box> 
+        <br>
+ 
+        <dx-check-box [(value)]="chonCBU"
+        (onValueChanged)="chonXuatXuOnchange($event)"
+        text="CBU"
+        ></dx-check-box>
+    </div>
+    <div class="w3-container w3-cell">
+
+            <dx-list #list
+                [dataSource]="arrCap2"
+                [height]="gridHeight -40"
+                [selectionMode]="selectionModeValue"
+                [selectAllMode]="selectAllModeVlaue"
+                [showSelectionControls]="true"
+                [(selectedItemKeys)]="keysSelect"></dx-list>
+            <div class="selected-data">
+                <span class="caption">Model:</span>
+                <span>{{list.selectedItemKeys.join(", ")}}</span>
+            </div>
+     
+    </div>
+
+
+    </div>
+
+
+    <div style="position: absolute;right: 50px;bottom: 10px; ">
+        <dx-button
+        class="button-info"
+        with = "200"
+        text="   Ok  "
+        (onClick)="fillModeData()">
+        </dx-button>
+    </div>
+  
+    <div style="position: absolute;right: 150px;bottom: 10px;  ">
+      <dx-button
+      class="button-info"
+      text="Cancel"
+      (onClick)="closeFillModeData()">
+      </dx-button>
+    </div>
+
+</dx-popup>

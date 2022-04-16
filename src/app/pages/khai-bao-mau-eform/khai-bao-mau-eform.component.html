@@ -1,0 +1,138 @@
+<!--
+    Test SVN
+-->
+<div class="form">
+    <div class="dx-fieldset">
+      
+        <div class="dx-fieldset-header">Khai báo mầu</div>
+
+        <div class="dx-field">
+            <div class="dx-field-label">Tên menu</div>
+            <div class="dx-field-value">
+                <dx-text-box [(value)] ="bcolor.Description" [disabled]="true"></dx-text-box>
+            </div>
+        </div>
+
+        <div class="dx-field">
+            <div class="dx-field-label">Mã biểu đồ</div>
+            <div class="dx-field-value">
+                <dx-text-box [(value)] ="bcolor.ChartID" [disabled]="true"></dx-text-box>
+            </div>
+        </div>
+
+        <div class="dx-field">
+            <div class="dx-field-label">Mầu cột 1</div>
+            <div class="dx-field-value">
+                <dx-color-box [(value)]="bcolor.color1" applyValueMode="instantly"></dx-color-box>
+            </div>
+        </div>
+
+        <div class="dx-field">
+            <div class="dx-field-label">Mầu font 1</div>
+            <div class="dx-field-value">
+                <dx-color-box [(value)]="bcolor.colorF1" applyValueMode="instantly"></dx-color-box>
+            </div>
+        </div>
+
+        <div class="dx-field">
+            <div class="dx-field-label">Mầu cột 2</div>
+            <div class="dx-field-value">
+                <dx-color-box [(value)]="bcolor.color2" applyValueMode="instantly"></dx-color-box>
+            </div>
+        </div>
+
+        <div class="dx-field">
+            <div class="dx-field-label">Mầu font 2</div>
+            <div class="dx-field-value">
+                
+                <dx-color-box [(value)]="bcolor.colorF2" applyValueMode="instantly"></dx-color-box>
+            </div>
+        </div>
+
+        <div class="dx-field">
+            <div class="dx-field-label">Mầu cột 3</div>
+            <div class="dx-field-value">
+                <dx-color-box [(value)]="bcolor.color3" applyValueMode="instantly"></dx-color-box>
+            </div>
+        </div>
+
+        <div class="dx-field">
+            <div class="dx-field-label">Mầu font 3</div>
+            <div class="dx-field-value">
+                
+                <dx-color-box [(value)]="bcolor.colorF3" applyValueMode="instantly"></dx-color-box>
+            </div>
+        </div>
+      
+        <div class="dx-field">
+            <div class="dx-field-label">Mầu cột 4</div>
+            <div class="dx-field-value">
+                <dx-color-box [(value)]="bcolor.color4" applyValueMode="instantly"></dx-color-box>
+            </div>
+        </div>
+
+        <div class="dx-field">
+            <div class="dx-field-label">Mầu font 4</div>
+            <div class="dx-field-value">
+                
+                <dx-color-box [(value)]="bcolor.colorF4" applyValueMode="instantly"></dx-color-box>
+            </div>
+        </div>
+
+        <div class="dx-field">
+            <div class="dx-field-label">Mầu cột 5</div>
+            <div class="dx-field-value">
+                <dx-color-box [(value)]="bcolor.color5" applyValueMode="instantly"></dx-color-box>
+            </div>
+        </div>
+
+        <div class="dx-field">
+            <div class="dx-field-label">Mầu font 5</div>
+            <div class="dx-field-value">
+                
+                <dx-color-box [(value)]="bcolor.colorF5" applyValueMode="instantly"></dx-color-box>
+            </div>
+        </div>
+        
+    </div>
+    
+    
+</div>
+
+
+
+
+<div class="float-div-bottom">
+
+
+
+    <div style="position: absolute;right: 1px;bottom: 1px;z-index: 5;" >
+        
+        <dx-button
+        icon="save"
+        type="success"
+        text="Save"
+        (onClick)="Save($event)">
+        </dx-button>
+
+    
+
+    </div>
+
+    <div style="position: absolute;right: 100px;bottom: 1px;z-index: 5;" >
+        
+        <dx-button
+        icon="back"
+        type="Default"
+        text="Back"
+        (onClick)="QuayLai($event)">
+        </dx-button>
+
+     
+    </div>
+
+    
+</div>
+
+<dx-toast [(visible)]="isVisibleThongBaoLoi" [type]="type" [message]="thongBaoLoi">
+</dx-toast>

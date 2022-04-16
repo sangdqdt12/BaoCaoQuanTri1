@@ -1,0 +1,246 @@
+
+<div class="dx-card content-block responsive-paddings">
+    <div id="form-container">
+        <dx-form id="form"               
+            [colCount]="3"> 
+                <dxi-item dataField="ID"></dxi-item>
+                <dxi-item dataField="BirthDate"></dxi-item>
+                <dxi-item
+                    itemType="button"
+                    [buttonOptions]="buttonOptions">
+                </dxi-item>
+                <dxi-button title="previous" itemType="button" horizontalAlignment="left" ></dxi-button>  
+                <dxi-button title="next" itemType="button" horizontalAlignment="right" ></dxi-button>
+        </dx-form>
+  </div>
+</div>
+
+
+
+<div class="dx-card content-block responsive-paddings">
+    <div class="w3-col l8 m12 s12">
+        <dx-chart
+    id="chartBar1"
+    title="Tổng hợp hiệu quả sản xuất kinh doanh"
+    [dataSource]="reportDataArr"
+    >
+    
+    <dxo-size
+        [(height)]="chartHeight"
+        >
+    </dxo-size>
+    <dxi-series valueField="Val1" name="Thực hiện"></dxi-series>
+    <dxi-series valueField="Val2" name="Cùng kỳ"></dxi-series>
+    
+    <dxi-series valueField="Val3" name="Tỷ lệ kế hoạch"></dxi-series>
+    
+    
+    <dxo-common-series-settings
+    argumentField="Code1"
+    type="bar"
+    hoverMode="allArgumentPoints"
+    selectionMode="allArgumentPoints">
+    <dxo-label
+        [visible]="true"
+        [format]="{
+            type: 'fixedPoint',
+            precision: '0'
+        }">
+    </dxo-label>
+    </dxo-common-series-settings>
+    <dxo-legend
+    verticalAlignment="bottom"
+    horizontalAlignment="center">
+    </dxo-legend>
+    <dxo-export [enabled]="true"></dxo-export>
+        </dx-chart>
+    </div>
+
+    <div class=" w3-col l4 m12 s12">
+        <div class="w3-margin-left">
+        <p class="w3-pa">Ghi chú</p>
+        <dx-text-area
+        [(height)]= "panelHeight"
+        [readOnly]="true" 
+        [(value)]="valueForEditableTextArea">
+        </dx-text-area>
+    </div>
+    </div>
+</div>
+
+
+<div class="dx-card content-block responsive-paddings">
+    <div class="w3-col l8 m12 s12">
+        <dx-data-grid
+        id="gridContainer"
+        [dataSource]="reportDataArr3"
+        [rowAlternationEnabled]="true"
+        [allowColumnResizing]="true"
+        [columnAutoWidth]="true"
+        [showBorders]="true"
+        >
+        
+        <dxi-column cssClass= "cls" dataField="Code2" dataType="string" caption="Chỉ tiêu"></dxi-column>
+        
+        <dxi-column  cssClass= "cls"  dataField="Val1"   dataType="number" headerCellTemplate="titleHeaderTemplate1" >
+        <dxo-format
+        type="fixedPoint"
+        [precision]="0">
+        </dxo-format>
+        </dxi-column>
+        <dxi-column  cssClass= "cls"  dataField="Val2"  dataType="number" caption="2" headerCellTemplate="titleHeaderTemplate2"  >
+        <dxo-format
+        type="fixedPoint"
+        [precision]="0">
+        </dxo-format>
+        </dxi-column>
+        
+        <dxi-column cssClass= "cls" dataField="Val3"  dataType="number" caption="3"  headerCellTemplate="titleHeaderTemplate3" >
+        <dxo-format
+        type="fixedPoint"
+        [precision]="0">
+        </dxo-format>
+        </dxi-column>
+        <dxi-column cssClass= "cls" dataField="Val4"  dataType="number" caption="4"  headerCellTemplate="titleHeaderTemplate4" >
+        <dxo-format
+        type="fixedPoint"
+        [precision]="0">
+        </dxo-format>
+        </dxi-column>
+        <dxi-column cssClass= "cls" dataField="Val5"  dataType="number" caption="5"  headerCellTemplate="titleHeaderTemplate5" >
+        <dxo-format
+        type="fixedPoint"
+        [precision]="0">
+        </dxo-format>
+        </dxi-column>
+        <dxi-column cssClass= "cls" dataField="Val6"  dataType="number" caption="6"  headerCellTemplate="titleHeaderTemplate6" >
+        <dxo-format
+        type="fixedPoint"
+        [precision]="0">
+        </dxo-format>
+        </dxi-column>
+        <dxi-column cssClass= "cls" dataField="Val7"  dataType="number" caption="7"  headerCellTemplate="titleHeaderTemplate7" >
+        <dxo-format
+        type="fixedPoint"
+        [precision]="0">
+        </dxo-format>
+        </dxi-column>
+        <dxi-column cssClass= "cls" dataField="Val8"  dataType="number" caption="8"  headerCellTemplate="titleHeaderTemplate8" >
+        <dxo-format
+        type="fixedPoint"
+        [precision]="0">
+        </dxo-format>
+        </dxi-column>
+        <dxi-column cssClass= "cls" dataField="Val9"  dataType="number" caption="9"  headerCellTemplate="titleHeaderTemplate9" >
+        <dxo-format
+        type="fixedPoint"
+        [precision]="0">
+        </dxo-format>
+        </dxi-column>
+        <dxi-column cssClass= "cls" dataField="Val10"  dataType="number" caption="10"  headerCellTemplate="titleHeaderTemplate10" >
+        <dxo-format
+        type="fixedPoint"
+        [precision]="0">
+        </dxo-format>
+        </dxi-column>
+        
+        
+        <!---->
+        <div *dxTemplate="let cell of 'cellTemplate'">
+        <div style="color: black">{{cell.text}}</div>
+        </div>
+        
+        <div *dxTemplate="let info of 'titleHeaderTemplate1'">
+        <div>{{arrHeader[0]}}</div>
+        </div>
+        <div *dxTemplate="let info of 'titleHeaderTemplate2'">
+        <div>{{arrHeader[1]}}</div>
+        </div>
+        <div *dxTemplate="let info of 'titleHeaderTemplate3'">
+        <div>{{arrHeader[2]}}</div>
+        </div>
+        <div *dxTemplate="let info of 'titleHeaderTemplate4'">
+        <div>{{arrHeader[3]}}</div>
+        </div>
+        <div *dxTemplate="let info of 'titleHeaderTemplate5'">
+        <div>{{arrHeader[4]}}</div>
+        </div>
+        <div *dxTemplate="let info of 'titleHeaderTemplate6'">
+        <div>{{arrHeader[5]}}</div>
+        </div>
+        <div *dxTemplate="let info of 'titleHeaderTemplate7'">
+        <div>{{arrHeader[6]}}</div>
+        </div>
+        <div *dxTemplate="let info of 'titleHeaderTemplate8'">
+        <div>{{arrHeader[7]}}</div>
+        </div>
+        <div *dxTemplate="let info of 'titleHeaderTemplate9'">
+        <div>{{arrHeader[8]}}</div>
+        </div>
+        <div *dxTemplate="let info of 'titleHeaderTemplate10'">
+        <div>{{arrHeader[9]}}</div>
+        </div>
+        <div *dxTemplate="let info of 'titleHeaderTemplate11'">
+        <div>{{arrHeader[10]}}</div>
+        </div>
+        <div *dxTemplate="let info of 'titleHeaderTemplate12'">
+        <div>{{arrHeader[11]}}</div>
+        </div>
+        <div *dxTemplate="let info of 'titleHeaderTemplate13'">
+        <div>{{arrHeader[12]}}</div>
+        </div>
+        <div *dxTemplate="let info of 'titleHeaderTemplate14'">
+        <div>{{arrHeader[13]}}</div>
+        </div>
+        <div *dxTemplate="let info of 'titleHeaderTemplate15'">
+        <div>{{arrHeader[14]}}</div>
+        </div>
+        <div *dxTemplate="let info of 'titleHeaderTemplate16'">
+        <div>{{arrHeader[15]}}</div>
+        </div>
+        <div *dxTemplate="let info of 'titleHeaderTemplate17'">
+        <div>{{arrHeader[16]}}</div>
+        </div>
+        <div *dxTemplate="let info of 'titleHeaderTemplate18'">
+        <div>{{arrHeader[17]}}</div>
+        </div>
+        <div *dxTemplate="let info of 'titleHeaderTemplate19'">
+        <div>{{arrHeader[18]}}</div>
+        </div>
+        <div *dxTemplate="let info of 'titleHeaderTemplate20'">
+        <div>{{arrHeader[19]}}</div>
+        </div>
+        <div *dxTemplate="let info of 'titleHeaderTemplate21'">
+        <div>{{arrHeader[20]}}</div>
+        </div>
+        <div *dxTemplate="let info of 'titleHeaderTemplate22'">
+        <div>{{arrHeader[21]}}</div>
+        </div>
+        <div *dxTemplate="let info of 'titleHeaderTemplate23'">
+        <div>{{arrHeader[22]}}</div>
+        </div>
+        <div *dxTemplate="let info of 'titleHeaderTemplate24'">
+        <div>{{arrHeader[23]}}</div>
+        </div>
+        
+        
+        
+        <div *dxTemplate="let info of 'addressHeaderTemplate'">
+        <i style="color: black;">{{info.column.caption}}</i>
+        </div>
+
+        </dx-data-grid>
+    </div>
+
+    <div class=" w3-col l4 m12 s12">
+        <div class="w3-margin-left">
+        <p class="w3-pa">Ghi chú</p>
+        <dx-text-area
+        [(height)]= "panelHeight"
+        [readOnly]="true" 
+        [(value)]="valueForEditableTextArea">
+        </dx-text-area>
+    </div>
+    </div>
+
+</div>

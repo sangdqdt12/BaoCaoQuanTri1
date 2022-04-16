@@ -1,0 +1,160 @@
+<div class="w3-display-container w3-deep-orange" style="height:45px;">
+    <div class="w3-display-left">
+      <h6>Tồn kho chung</h6>
+    </div>
+    <div class="w3-display-right">
+      <dx-button
+      class="button-info"
+      text="Filter"
+      (onClick)="showFilter()">
+      </dx-button>
+    </div>
+  </div>
+  
+
+  <dx-popup
+    maxWidth = "600"
+    [showTitle]="true"
+    title="Filter"
+    [dragEnabled]="false"
+    [closeOnOutsideClick]="false"
+    [(visible)]="popupVisible">
+
+
+    <div class="dx-fieldset">
+      <div class="dx-field">
+          <div class="dx-field-label">Date</div>
+          <div class="dx-field-value">
+              <dx-date-box
+                  [value]="ngayVal"
+                  type="date">
+              </dx-date-box>
+          </div>
+      </div>
+
+      <div class="dx-field">
+          <div class="dx-field-label">Khối</div>
+          <div class="dx-field-value">
+              <dx-select-box 
+              [dataSource]="donViCoSos"
+              displayExpr="ten_nh"
+              valueExpr="ma_nh"
+              [(value)] = "khoiVal"
+                >
+
+              </dx-select-box>
+          </div>
+      </div>
+
+      <div class="dx-field">
+        <div class="dx-field-label">Cấp</div>
+        <div class="dx-field-value">
+            <dx-select-box 
+            [dataSource]="capCbxd"
+            displayExpr="Ten"
+            valueExpr="Ma"
+            [(value)] = "capVal"
+            >
+            </dx-select-box>
+        </div>
+    </div>
+
+    </div>
+    <div style="position: absolute;right: 50px;bottom: 10px; ">
+      <dx-button
+      class="button-info"
+      with = "200"
+      text="   Ok  "
+      (onClick)="fillData()">
+      </dx-button>
+    </div>
+
+    <div style="position: absolute;right: 150px;bottom: 10px;  ">
+      <dx-button
+      class="button-info"
+      text="Cancel"
+      (onClick)="close()">
+      </dx-button>
+    </div>
+</dx-popup>
+
+
+
+
+<dx-data-grid 
+id="gridDetail"
+[showColumnHeaders]="true"
+[dataSource]="reportDataDetail"
+[showBorders]="true"
+[focusedRowEnabled]="false"
+[focusedRowIndex]="0"
+[columnHidingEnabled]="false"
+[columnAutoWidth]="true"
+[showColumnLines]="true"
+[showRowLines]="true"
+(onRowPrepared)="onRowPrepared($event)"
+[repaintChangesOnly]="true"
+(onCellPrepared)="onCellPrepared($event)"
+[rowAlternationEnabled]="true"
+>
+
+<dxi-column dataField="Col1" caption="ĐV"   headerCellTemplate="addressHeaderTemplate"> </dxi-column>
+<dxi-column dataField="Col2" caption="Ký"  headerCellTemplate="addressHeaderTemplate"> </dxi-column>
+<dxi-column dataField="Col3" caption="KT"  headerCellTemplate="addressHeaderTemplate"> </dxi-column>
+<dxi-column dataField="Col4" caption="Tồn"  headerCellTemplate="addressHeaderTemplate"> </dxi-column>
+<dxi-column dataField="Col5" caption="N+1"  headerCellTemplate="addressHeaderTemplate"> </dxi-column>
+<dxi-column dataField="Col6" caption="N+2"  headerCellTemplate="addressHeaderTemplate"> </dxi-column>
+
+<div *dxTemplate="let info of 'titleHeaderTemplate'">
+<p style="font-size:16px">{{info.column.caption}}</p>
+</div>
+
+<div style="font-size:16px;  text-align: center; white-space: normal;" *dxTemplate="let info of 'titleHeaderTemplate2'">
+{{info.column.caption}}
+</div>
+
+<div style="font-size:12px; text-align: center; white-space: normal;" *dxTemplate="let info of 'titleHeaderTemplate3'">
+{{info.column.caption}}
+</div>
+
+
+<div  style="color: rgb(0, 0, 0); white-space : normal;font-size:11px;" *dxTemplate="let info of 'addressHeaderTemplate'">
+{{info.column.caption}}
+</div>
+
+</dx-data-grid>
+
+<div style="position: absolute;left: 1px;bottom: 10px;" class=" w3-light-grey">
+
+      <dx-tabs [dataSource]="cap3s" 
+      [width]="innerWidth"
+      [scrollByContent]="true"
+      [showNavButtons]="true"
+      (onItemClick)="selCap3($event)"></dx-tabs>
+
+      <dx-tabs [dataSource]="cap2s" 
+      [width]="innerWidth"
+      [scrollByContent]="true"
+      [showNavButtons]="true"
+      (onItemClick)="selCap2($event)"></dx-tabs>
+
+      <dx-tabs [dataSource]="cap1s" 
+      [width]="innerWidth"
+      [scrollByContent]="true"
+      [showNavButtons]="true"
+      (onItemClick)="selCap1($event)"></dx-tabs>
+
+</div>
+
+
+
+
+<!--
+<div id="model" style="position: absolute;right: 10px;bottom: 60px;">
+    <dx-tabs [dataSource]="models"></dx-tabs>
+</div>
+
+<div id="maMau" style="position: absolute;right: 10px;bottom: 115px;">
+    <dx-tabs [dataSource]="maMaus"></dx-tabs>
+</div>
+-->

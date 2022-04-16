@@ -1,0 +1,99 @@
+<p class="name-menu">Danh sách khai bao màu biểu đồ</p>
+
+<dx-data-grid id="grid" [height]="gridHeight" [width]="gridwidth" [showColumnHeaders]="true"
+    [dataSource]="reportDataDetail" [showBorders]="true" [focusedRowEnabled]="true" [focusedRowIndex]="0"
+    [columnHidingEnabled]="false" [columnAutoWidth]="false" [showColumnLines]="true" [showRowLines]="true"
+    (onRowPrepared)="onRowPrepared($event)" [repaintChangesOnly]="true" (onCellPrepared)="onCellPrepared($event)"
+    [rowAlternationEnabled]="true" (onSelectionChanged)="selectedChanged($event)">
+
+
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-header-filter [visible]="true"></dxo-header-filter>
+    <dxo-search-panel [visible]="true" [width]="240" placeholder="Tìm kiếm..."></dxo-search-panel>
+
+
+
+    <dxo-selection mode="single"></dxo-selection>
+
+    
+    <dxi-column dataField="Description" caption="Tên menu" headerCellTemplate="titleHeaderTemplate1" [width]="300">
+    </dxi-column>
+    <dxi-column dataField="ChartID" caption="Tên biểu đồ" headerCellTemplate="titleHeaderTemplate1" [width]="300">
+    </dxi-column>
+    <dxi-column dataField="color1" caption="Mầu cột 1" headerCellTemplate="titleHeaderTemplate1" cellTemplate="colorCellTemplate" [width]="100">
+        <div *dxTemplate="let cellData of 'colorCellTemplate'" style="text-align:center">
+            <dx-color-box [(value)]="cellData.value"  [options] ="false" (onValueChanged)="colorBox_valueChanged($event)" >
+            </dx-color-box>
+        </div>
+    </dxi-column>
+    <dxi-column dataField="colorF1" caption="Mầu chữ 1" headerCellTemplate="titleHeaderTemplate1" cellTemplate="colorCellTemplate" [width]="100">
+        <div *dxTemplate="let cellData of 'colorCellTemplate'" style="text-align:center">
+            <dx-color-box [(value)]="cellData.value" (onValueChanged)="colorBox_valueChanged($event)">
+            </dx-color-box>
+        </div>
+    </dxi-column>
+
+    <dxi-column dataField="color2" caption="Mầu cột 2" headerCellTemplate="titleHeaderTemplate1" cellTemplate="colorCellTemplate" [width]="100">
+        <div *dxTemplate="let cellData of 'colorCellTemplate'" style="text-align:center">
+            <dx-color-box [(value)]="cellData.value"  [options] ="false" (onValueChanged)="colorBox_valueChanged($event)" >
+            </dx-color-box>
+        </div>
+    </dxi-column>
+    <dxi-column dataField="colorF2" caption="Mầu chữ 2" headerCellTemplate="titleHeaderTemplate1" cellTemplate="colorCellTemplate" [width]="100">
+        <div *dxTemplate="let cellData of 'colorCellTemplate'" style="text-align:center">
+            <dx-color-box [(value)]="cellData.value"  [options] ="false" (onValueChanged)="colorBox_valueChanged($event)" >
+            </dx-color-box>
+        </div>
+    </dxi-column>
+
+    <dxi-column dataField="color3" caption="Mầu cột 3" headerCellTemplate="titleHeaderTemplate1" cellTemplate="colorCellTemplate" [width]="100">
+        <div *dxTemplate="let cellData of 'colorCellTemplate'" style="text-align:center">
+            <dx-color-box [(value)]="cellData.value"  [options] ="false" (onValueChanged)="colorBox_valueChanged($event)" >
+            </dx-color-box>
+        </div>
+    </dxi-column>
+    <dxi-column dataField="colorF3" caption="Mầu chữ 3" headerCellTemplate="titleHeaderTemplate1" cellTemplate="colorCellTemplate" [width]="100">
+        <div *dxTemplate="let cellData of 'colorCellTemplate'" style="text-align:center">
+            <dx-color-box [(value)]="cellData.value"  [options] ="false" (onValueChanged)="colorBox_valueChanged($event)" >
+            </dx-color-box>
+        </div>
+    </dxi-column>
+
+    <dxi-column dataField="color4" caption="Mầu cột 4" headerCellTemplate="titleHeaderTemplate1" cellTemplate="colorCellTemplate" [width]="100">
+        <div *dxTemplate="let cellData of 'colorCellTemplate'" style="text-align:center">
+            <dx-color-box [(value)]="cellData.value"  [options] ="false" (onValueChanged)="colorBox_valueChanged($event)" >
+            </dx-color-box>
+        </div>
+    </dxi-column>
+    <dxi-column dataField="colorF4" caption="Mầu chữ 4" headerCellTemplate="titleHeaderTemplate1" cellTemplate="colorCellTemplate" [width]="100">
+        <div *dxTemplate="let cellData of 'colorCellTemplate'" style="text-align:center">
+            <dx-color-box [(value)]="cellData.value"  [options] ="false" (onValueChanged)="colorBox_valueChanged($event)" >
+            </dx-color-box>
+        </div>
+    </dxi-column>
+
+    <dxi-column dataField="color5" caption="Mầu cột 5" headerCellTemplate="titleHeaderTemplate1" cellTemplate="colorCellTemplate" [width]="100">
+        <div *dxTemplate="let cellData of 'colorCellTemplate'" style="text-align:center">
+            <dx-color-box [(value)]="cellData.value"  [options] ="false" (onValueChanged)="colorBox_valueChanged($event)" >
+            </dx-color-box>
+        </div>
+    </dxi-column>
+    <dxi-column dataField="colorF5" caption="Mầu chữ 5" headerCellTemplate="titleHeaderTemplate1" cellTemplate="colorCellTemplate" [width]="100">
+        <div *dxTemplate="let cellData of 'colorCellTemplate'" style="text-align:center">
+            <dx-color-box [(value)]="cellData.value"  [options] ="false" (onValueChanged)="colorBox_valueChanged($event)" >
+            </dx-color-box>
+        </div>
+    </dxi-column>
+
+
+    <div class="HeaderGrid" style="font-size:14px; align-items: center; white-space: normal; word-wrap: break-word; "
+        *dxTemplate="let info of 'titleHeaderTemplate1'">
+        {{info.column.caption}}
+    </div>
+
+
+</dx-data-grid>
+
+
+<dx-speed-dial-action icon="edit" label="Sửa" [index]="3" [visible]="selectedRowIndex !== -1" (onClick)="editRow()">
+</dx-speed-dial-action>

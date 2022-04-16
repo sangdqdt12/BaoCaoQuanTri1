@@ -1,0 +1,25 @@
+<div class="ExBoder15">
+
+
+    <div class="w3-container">
+      <h5 style="color: blue">Số lượng TFS: {{XeTFS| number}}</h5> 
+        
+        </div>
+
+    
+
+    <dx-pie-chart id="pie" title="Tỷ lệ khai thác" palette="bright" [dataSource]="dataSource">
+        <dxi-series argumentField="Chi_tieu" valueField="So_Luong">
+            <dxo-label [visible]="true">
+                <dxo-connector [visible]="true" [width]="1"></dxo-connector>
+            </dxo-label>
+        </dxi-series>
+        <dxo-size [width]="Width" [height]="Height"></dxo-size>
+        <dxo-export [enabled]="true"></dxo-export>
+        <dxo-legend verticalAlignment="bottom" horizontalAlignment="center">
+    </dxo-legend>
+    </dx-pie-chart>
+
+
+
+</div>

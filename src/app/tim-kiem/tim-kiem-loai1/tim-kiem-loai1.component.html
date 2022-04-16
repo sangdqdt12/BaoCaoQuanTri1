@@ -1,0 +1,23 @@
+
+
+    <div class="dx-fieldset">
+
+        <div class="dx-field">
+            <div class="dx-field-label">Từ ngày</div>
+            <div class="dx-field-value">
+                <dx-date-box [(value)]="tuNgayVal" type="date">
+                </dx-date-box>
+            </div>
+        </div>
+
+        <div class="dx-field">
+            <div class="dx-field-label">Khối</div>
+            <div class="dx-field-value">
+                <dx-select-box [dataSource]="khois" displayExpr="ten_nh" valueExpr="ma_nh" [(value)]="khoiVal">
+                </dx-select-box>
+            </div>
+        </div>
+    
+
+    </div>
+

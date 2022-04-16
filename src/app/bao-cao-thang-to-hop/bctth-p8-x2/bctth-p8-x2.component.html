@@ -1,0 +1,72 @@
+<div class="ExDiv">
+    <dx-chart id="dv01-db01" title="08. LNG Nội thất" [dataSource]="dataSource"
+    resolveLabelOverlapping="stack"
+    >
+    
+        <dxo-size
+        [height]="height"
+        [width]="width">
+    </dxo-size>
+    
+        
+
+        <dxi-series axis="CT3" type="line" valueField="lng_nt_08" name="Tỷ lệ LNG nội thất" [color]="color1">
+        </dxi-series>
+        
+   
+    
+    
+        <dxo-common-series-settings
+        argumentField="Ten_Dvcs"
+        type="bar"
+        hoverMode="allArgumentPoints"
+        selectionMode="allArgumentPoints">
+        <dxo-label
+            position = "inside"
+            backgroundColor="tran"
+            opacity = "0"
+            [visible]="true"
+            [format]="{
+                type: 'fixedPoint',
+                precision: '0'
+            }"
+            
+            >
+            <dxo-font [color] = 'colorF1'>
+    
+            </dxo-font>
+            
+        </dxo-label>
+    </dxo-common-series-settings>
+    
+    
+    
+        <dxi-value-axis 
+        [visible]="true"
+    
+        >
+        <dxo-break-style 
+            line ="waved">
+        </dxo-break-style>
+        <dxo-grid [visible]="true"></dxo-grid>
+        </dxi-value-axis>
+    
+    
+     
+    
+    
+        <dxi-value-axis  name="CT3" position="right"
+        minValueMargin = "0" maxValueMargin ="0"
+    
+        >
+            <dxo-grid [visible]="true"></dxo-grid>
+            <dxo-title text="Tỷ lệ LNG nội thất"></dxo-title>
+        </dxi-value-axis>
+
+        
+    
+        <dxo-legend verticalAlignment="bottom" horizontalAlignment="center">
+        </dxo-legend>
+        <dxo-export [enabled]="true"></dxo-export>
+    </dx-chart>
+    </div>
